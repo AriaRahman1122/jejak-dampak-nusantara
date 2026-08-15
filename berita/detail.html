@@ -1,0 +1,112 @@
+<!--
+  ============================================================================
+  File: detail.html
+  Deskripsi: Halaman detail berita Jejak Dampak Nusantara
+  Author: Aria Rahman
+  Versi: 1.0.0
+  ============================================================================
+-->
+<!doctype html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detail Berita | Jejak Dampak Nusantara</title>
+  <meta name="description" content="Detail berita Jejak Dampak Nusantara">
+  <link rel="icon" href="/assets/img/logo-mark.svg" type="image/svg+xml">
+  
+  <!-- Script untuk mencegah flicker - harus dimuat sebelum CSS -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('jdn-theme');
+      const savedLang = localStorage.getItem('jdn-lang');
+      
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+      
+      if (savedLang) {
+        document.documentElement.setAttribute('lang', savedLang);
+      }
+    })();
+  </script>
+  
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/news-detail.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+
+  <!-- Navbar akan di-load oleh JavaScript -->
+  <div id="navbar-container"></div>
+
+  <main id="main">
+    <!-- Article Hero Section -->
+    <section class="article-hero">
+      <div class="container">
+        <div id="articleBreadcrumb" class="article-breadcrumb">
+          <a href="/" data-i18n="breadcrumb-home">Beranda</a>
+          <span>→</span>
+          <a href="/berita/" data-i18n="breadcrumb-news">Berita</a>
+          <span>→</span>
+          <span id="articleCategory" class="article-category-text">Kategori</span>
+        </div>
+        <h1 id="articleTitle">Judul Berita</h1>
+        <p id="articleExcerpt">Ringkasan berita</p>
+        <div id="articleMeta" class="article-meta">
+          <span>📅 <span id="articleDate">Tanggal</span></span>
+          <span>👁 <span id="articleViews">0</span> <span data-i18n="reads">dibaca</span></span>
+          <span>⏱ <span data-i18n="read-time">4 menit baca</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Article Content Section -->
+    <section class="section">
+      <div class="container article-layout">
+        <!-- Main Article Content -->
+        <article class="article-content">
+          <img id="articleImage" class="article-cover" src="" alt="Gambar Berita">
+          <div id="articleBody">
+            <!-- Article content akan di-load oleh JavaScript -->
+          </div>
+          
+          <!-- Share Section -->
+          <div class="article-share">
+            <span data-i18n="share-label">Bagikan:</span>
+            <a href="#" class="share-btn" id="shareFacebook" target="_blank" rel="noopener">Facebook</a>
+            <a href="#" class="share-btn" id="shareTwitter" target="_blank" rel="noopener">Twitter</a>
+            <a href="#" class="share-btn" id="shareWhatsApp" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="article-sidebar">
+          <div class="sidebar-widget">
+            <h3 class="sidebar-title" data-i18n="related-news">Berita Terkait</h3>
+            <div id="relatedNewsList" class="related-news-list">
+              <!-- Related news akan di-load oleh JavaScript -->
+            </div>
+          </div>
+          
+          <!-- CTA Widget -->
+          <div class="sidebar-widget sidebar-cta">
+            <h3 data-i18n="cta-sidebar-title">Ingin berkontribusi?</h3>
+            <p data-i18n="cta-sidebar-desc">Dukung program-program kami untuk menciptakan dampak yang nyata.</p>
+            <a class="btn" href="/donasi/" data-i18n="donate-now">Donasi Sekarang</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer akan di-load oleh JavaScript -->
+  <div id="footer-container"></div>
+
+  <script src="/assets/js/components.js"></script>
+  <script src="/assets/js/translations/components.js"></script>
+  <script src="/assets/js/translations/news-detail.js"></script>
+  <script src="/assets/js/news-detail.js"></script>
+</body>
+</html>

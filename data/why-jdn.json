@@ -1,0 +1,42 @@
+[
+  {
+    "title": {
+      "id": "Program berbasis kebutuhan",
+      "en": "Needs-based programs"
+    },
+    "description": {
+      "id": "Program tidak dibuat hanya untuk seremonial, tetapi berdasarkan isu, wilayah, dan kebutuhan penerima manfaat.",
+      "en": "Programs are not made just for ceremonies, but based on issues, regions, and beneficiary needs."
+    }
+  },
+  {
+    "title": {
+      "id": "Pelaporan profesional",
+      "en": "Professional reporting"
+    },
+    "description": {
+      "id": "Setiap program dapat dilengkapi indikator, dokumentasi, progres, dan laporan dampak yang rapi.",
+      "en": "Each program can be equipped with indicators, documentation, progress, and neat impact reports."
+    }
+  },
+  {
+    "title": {
+      "id": "Siap untuk CSR & ESG",
+      "en": "Ready for CSR & ESG"
+    },
+    "description": {
+      "id": "Format program dapat disesuaikan dengan kebutuhan komunikasi CSR, ESG, atau sustainability report perusahaan.",
+      "en": "Program formats can be adjusted to CSR communication, ESG, or corporate sustainability report needs."
+    }
+  },
+  {
+    "title": {
+      "id": "Bank program luas",
+      "en": "Extensive program bank"
+    },
+    "description": {
+      "id": "Mitra dapat memilih berbagai isu seperti pendidikan, kesehatan, gizi, air bersih, energi, lingkungan, dan pemberdayaan.",
+      "en": "Partners can choose various issues such as education, health, nutrition, clean water, energy, environment, and empowerment."
+    }
+  }
+]

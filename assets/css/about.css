@@ -1,0 +1,375 @@
+/*
+  ============================================================================
+  File: about.css
+  Deskripsi: Style khusus untuk halaman tentang
+  Author: Aria Rahman
+  Versi: 1.0.0
+  ============================================================================
+*/
+
+/* ============ PAGE HERO ============ */
+.page-hero {
+  padding: calc(var(--nav) + 60px) 0 50px;
+  background: var(--soft2);
+  text-align: left;
+}
+
+.page-hero h1 {
+  font-size: clamp(2.8rem, 6vw, 5.7rem);
+  margin-bottom: 1rem;
+  color: var(--ink);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.page-hero p {
+  font-size: clamp(1.04rem, 2vw, 1.32rem);
+  max-width: 700px;
+  color: var(--muted);
+}
+
+/* ============ INTRO SECTION ============ */
+.about-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.about-highlight-card {
+  background: linear-gradient(135deg, var(--deep), var(--main));
+  color: #fff;
+  border-radius: 28px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.about-highlight-card span {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.about-highlight-card h3 {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.about-highlight-card p {
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 0;
+}
+
+/* ============ VISION MISSION ============ */
+.about-vision-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.vision-card,
+.mission-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 2rem;
+  box-shadow: 0 10px 38px rgba(13, 96, 50, 0.07);
+}
+
+.vision-card span,
+.mission-card span {
+  display: inline-block;
+  background: var(--deep);
+  color: #fff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.vision-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.vision-card p {
+  margin-bottom: 0;
+}
+
+.mission-card ol {
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+.mission-card li {
+  margin-bottom: 0.8rem;
+  line-height: 1.7;
+}
+
+.mission-card li:last-child {
+  margin-bottom: 0;
+}
+
+/* ============ METHOD SECTION ============ */
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.method-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 38px rgba(13, 96, 50, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.method-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(13, 96, 50, 0.12);
+}
+
+.method-card b {
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(118, 172, 60, 0.14);
+  color: var(--deep);
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.method-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+}
+
+.method-card p {
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+/* ============ LEGAL SECTION ============ */
+.legal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.legal-info-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 38px rgba(13, 96, 50, 0.07);
+}
+
+.legal-info-card span {
+  display: inline-block;
+  background: var(--soft);
+  color: var(--deep);
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 900;
+  margin-bottom: 0.8rem;
+}
+
+.legal-info-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.legal-info-card p {
+  margin-bottom: 0;
+}
+
+/* ============ TRUST SECTION ============ */
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.trust-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 38px rgba(13, 96, 50, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.trust-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(13, 96, 50, 0.12);
+}
+
+.trust-icon {
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(118, 172, 60, 0.14);
+  color: var(--deep);
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.trust-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.trust-card p {
+  font-size: 0.95rem;
+}
+
+.text-link {
+  color: var(--deep);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.text-link:hover {
+  color: var(--main);
+}
+
+/* ============ FOUNDER SECTION ============ */
+.founder-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.founder-card {
+  text-align: center;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 2rem;
+  box-shadow: 0 10px 38px rgba(13, 96, 50, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.founder-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(13, 96, 50, 0.12);
+}
+
+.founder-card img {
+  width: 170px;
+  height: 170px;
+  border-radius: 999px;
+  object-fit: cover;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 24px 38px rgba(13, 96, 50, 0.14);
+}
+
+.founder-card h3 {
+  margin-bottom: 0.3rem;
+}
+
+.founder-card p strong {
+  color: var(--deep);
+}
+
+.founder-card p:last-child {
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+/* ============ FAQ SECTION ============ */
+.faq {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.faq-button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--ink);
+  text-align: left;
+}
+
+.faq-button span {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.open .faq-button span {
+  transform: rotate(45deg);
+}
+
+.faq-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.faq-item.open .faq-panel {
+  max-height: 200px;
+}
+
+.faq-panel p {
+  padding: 0 1.5rem 1.2rem;
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .page-hero h1 {
+    font-size: 2.7rem;
+  }
+  
+  .about-intro-grid,
+  .about-vision-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .method-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .legal-grid,
+  .trust-grid,
+  .founder-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .method-grid {
+    grid-template-columns: 1fr;
+  }
+}

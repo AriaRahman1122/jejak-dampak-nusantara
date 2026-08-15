@@ -1,0 +1,22 @@
+[
+  {
+    "number": "01",
+    "title": "Needs Mapping",
+    "description": "Identify issues, regions, beneficiaries, risks, and collaboration potential."
+  },
+  {
+    "number": "02",
+    "title": "Program Design",
+    "description": "Develop goals, indicators, timeline, activities, budget, and impact targets."
+  },
+  {
+    "number": "03",
+    "title": "Implementation",
+    "description": "Execute programs with communities, volunteers, local partners, and stakeholders."
+  },
+  {
+    "number": "04",
+    "title": "Monitoring & Reporting",
+    "description": "Monitor progress, collect evidence, evaluate results, and compile impact reports."
+  }
+]

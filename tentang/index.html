@@ -1,0 +1,194 @@
+<!--
+  ============================================================================
+  File: index.html
+  Deskripsi: Halaman tentang Jejak Dampak Nusantara
+  Author: Aria Rahman
+  Versi: 1.0.0
+  ============================================================================
+-->
+<!doctype html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tentang | Jejak Dampak Nusantara</title>
+  <meta name="description" content="Profil, visi misi, legalitas, transparansi, dan founder Yayasan Jejak Dampak Nusantara.">
+  <link rel="icon" href="/assets/img/logo-mark.svg" type="image/svg+xml">
+  
+  <!-- Script untuk mencegah flicker - harus dimuat sebelum CSS -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('jdn-theme');
+      const savedLang = localStorage.getItem('jdn-lang');
+      
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+      
+      if (savedLang) {
+        document.documentElement.setAttribute('lang', savedLang);
+      }
+    })();
+  </script>
+  
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/about.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+
+  <!-- Navbar akan di-load oleh JavaScript -->
+  <div id="navbar-container"></div>
+
+  <main id="main">
+    <!-- HERO SECTION -->
+    <section class="page-hero about-hero">
+      <div class="container">
+        <span class="eyebrow green" data-i18n="hero-eyebrow">Tentang Yayasan</span>
+        <h1 data-i18n="hero-title">Jejak Dampak Nusantara</h1>
+        <p data-i18n="hero-desc">Lembaga sosial yang menjadi jembatan antara donatur, perusahaan, dan masyarakat untuk memajukan pendidikan, kesehatan, dan keberlanjutan di seluruh Indonesia.</p>
+      </div>
+    </section>
+
+    <!-- PENGERTIAN JDN -->
+    <section class="section about-intro-section">
+      <div class="container about-intro-grid">
+        <div class="section-head reveal">
+          <span class="eyebrow green" data-i18n="intro-eyebrow">Apa itu JDN?</span>
+          <h2 data-i18n="intro-title">Bukan sekadar charity, tetapi ekosistem dampak yang berkelanjutan.</h2>
+          <p data-i18n="intro-desc-1">Yayasan Jejak Dampak Nusantara adalah lembaga non-profit berbasis di Indonesia yang hadir sebagai katalisator dampak dan penghubung strategis antara donatur publik, korporasi, dan masyarakat penerima manfaat.</p>
+          <p data-i18n="intro-desc-2">JDN fokus pada pengembangan program di sektor pendidikan, kesehatan, dan keberlanjutan dengan pendekatan yang terukur, terdokumentasi, dan dapat dikembangkan lintas wilayah.</p>
+        </div>
+
+        <div class="about-highlight-card reveal">
+          <span data-i18n="highlight-label">Jejak yang nyata</span>
+          <h3 data-i18n="highlight-title">Setiap aksi kecil harus meninggalkan dampak yang bisa dibuktikan.</h3>
+          <p data-i18n="highlight-desc">Kami menggabungkan social mapping, desain program, implementasi lapangan, monitoring, evaluasi, dan pelaporan dampak dalam satu alur kerja yang rapi.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISI MISI -->
+    <section class="section soft-bg about-vision-section">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="eyebrow green" data-i18n="vision-eyebrow">Visi & Misi</span>
+          <h2 data-i18n="vision-title">Arah kerja JDN dibangun untuk dampak yang inklusif dan terukur.</h2>
+        </div>
+
+        <div class="about-vision-grid">
+          <article class="vision-card reveal">
+            <span data-i18n="vision-label">Visi</span>
+            <h3 data-i18n="vision-text">Menjadi katalisator dampak terdepan di Indonesia.</h3>
+            <p data-i18n="vision-desc">Menggerakkan kolaborasi multi-sektor untuk pertumbuhan pendidikan dan kesehatan yang inklusif, terukur, dan berkelanjutan.</p>
+          </article>
+
+          <article class="mission-card reveal">
+            <span data-i18n="mission-label">Misi</span>
+            <ol>
+              <li data-i18n="mission-1">Menjadi mitra strategis korporasi dalam merancang dan mengeksekusi program CSR yang berdampak nyata dan terdokumentasi profesional.</li>
+              <li data-i18n="mission-2">Mendorong kolaborasi multi-pihak untuk akselerasi pencapaian Tujuan Pembangunan Berkelanjutan atau SDGs Indonesia.</li>
+              <li data-i18n="mission-3">Memperluas dampak di seluruh wilayah Indonesia sebagai bentuk kontribusi menuju Indonesia Emas 2045.</li>
+            </ol>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARA KERJA -->
+    <section class="section about-method-section">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="eyebrow green" data-i18n="method-eyebrow">Cara Kerja</span>
+          <h2 data-i18n="method-title">Dari kebutuhan lapangan sampai laporan dampak.</h2>
+          <p data-i18n="method-desc">JDN tidak hanya menjalankan kegiatan sosial, tetapi membangun alur program yang dapat dipahami donatur, mitra, dan penerima manfaat.</p>
+        </div>
+
+        <div class="method-grid" id="methodGrid">
+          <!-- Method cards akan di-load oleh JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- LEGALITAS -->
+    <section class="section soft-bg about-legal-section" id="legalitas">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="eyebrow green" data-i18n="legal-eyebrow">Legalitas</span>
+          <h2 data-i18n="legal-title">Dasar legal Yayasan Jejak Dampak Nusantara.</h2>
+          <p data-i18n="legal-desc">Legalitas menjadi fondasi kepercayaan publik, donatur, dan mitra dalam membangun kolaborasi sosial yang profesional.</p>
+        </div>
+
+        <div class="legal-grid" id="legalGrid">
+          <!-- Legal cards akan di-load oleh JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST CENTER / TRANSPARANSI -->
+    <section class="section about-trust-section" id="transparansi">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="eyebrow green" data-i18n="trust-eyebrow">Trust Center</span>
+          <h2 data-i18n="trust-title">Transparansi untuk membangun kepercayaan publik.</h2>
+          <p data-i18n="trust-desc">JDN menempatkan legalitas, tata kelola, penggunaan dana, laporan program, dan dokumentasi dampak sebagai bagian penting dari akuntabilitas lembaga.</p>
+        </div>
+
+        <div class="trust-grid" id="trustGrid">
+          <!-- Trust cards akan di-load oleh JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDER -->
+    <section class="section about-founder-section">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="eyebrow green" data-i18n="founder-eyebrow">Founder Team</span>
+          <h2 data-i18n="founder-title">Tiga pendiri dengan keahlian yang saling melengkapi.</h2>
+          <p data-i18n="founder-desc">Leadership, program development, dan digital growth menjadi fondasi kerja JDN dalam membangun ekosistem dampak.</p>
+        </div>
+
+        <div class="founder-grid" id="founderGrid">
+          <!-- Founder cards akan di-load oleh JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ TRANSPARANSI -->
+    <section class="section compact soft-bg about-faq-section">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="eyebrow green" data-i18n="faq-eyebrow">FAQ</span>
+          <h2 data-i18n="faq-title">Pertanyaan yang sering muncul terkait kepercayaan dan transparansi.</h2>
+        </div>
+
+        <div class="faq about-faq" id="faqList">
+          <!-- FAQ items akan di-load oleh JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section compact">
+      <div class="container cta-band reveal">
+        <h2 data-i18n="cta-title">Ingin mengenal JDN lebih dalam?</h2>
+        <p data-i18n="cta-desc">Lihat bank program, diskusikan kebutuhan kemitraan, atau hubungi tim untuk mendapatkan informasi resmi.</p>
+        <div>
+          <a class="btn btn-light" href="/program/" data-i18n="view-programs">Lihat Program</a>
+          <a class="btn btn-ghost-white" href="/kemitraan/" data-i18n="become-partner">Jadi Mitra</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer akan di-load oleh JavaScript -->
+  <div id="footer-container"></div>
+
+  <script src="/assets/js/components.js"></script>
+  <script src="/assets/js/translations/components.js"></script>
+  <script src="/assets/js/translations/about.js"></script>
+  <script src="/assets/js/about.js"></script>
+</body>
+</html>

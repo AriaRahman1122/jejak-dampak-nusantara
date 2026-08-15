@@ -1,0 +1,44 @@
+[
+  {
+    "icon": "01",
+    "title": "Foundation Legality",
+    "description": "Information on deed of establishment, Ministry of Law approval, domicile, and official contacts is provided for easy verification.",
+    "link": "#legalitas",
+    "linkText": "View legality →"
+  },
+  {
+    "icon": "02",
+    "title": "Annual Report",
+    "description": "Annual reports contain institutional direction, program achievements, impact stories, collaborations, and learnings from running programs.",
+    "link": "/kontak/",
+    "linkText": "Request info →"
+  },
+  {
+    "icon": "03",
+    "title": "Financial Report",
+    "description": "Summary of fund receipts and disbursements is prepared to clarify how public and partner support is used.",
+    "link": "/kontak/",
+    "linkText": "Contact team →"
+  },
+  {
+    "icon": "04",
+    "title": "Program Report",
+    "description": "Each program can be equipped with targets, activities, outputs, documentation, beneficiaries, and sustainability recommendations.",
+    "link": "/program/",
+    "linkText": "View programs →"
+  },
+  {
+    "icon": "05",
+    "title": "Impact Documentation",
+    "description": "Activity evidence, beneficiary stories, field updates, and monitoring results are part of impact communication.",
+    "link": "/berita/",
+    "linkText": "View stories →"
+  },
+  {
+    "icon": "06",
+    "title": "Professional Partnership",
+    "description": "For companies, reports can be customized to CSR, ESG, employee giving, or sustainability report needs.",
+    "link": "/kemitraan/",
+    "linkText": "View partnership →"
+  }
+]

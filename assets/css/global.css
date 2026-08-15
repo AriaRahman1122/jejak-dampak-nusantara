@@ -1,0 +1,256 @@
+/*
+  ============================================================================
+  File: global.css
+  Deskripsi: Style global untuk seluruh halaman
+  Author: Aria Rahman
+  Versi: 1.0.0
+  ============================================================================
+*/
+
+:root {
+  --main: #76ac3c;
+  --deep: #0d6032;
+  --deep2: #063e23;
+  --lime: #9be248;
+  --paper: #fff;
+  --ink: #102016;
+  --muted: #66746a;
+  --soft: #f2faee;
+  --soft2: #f8fbf5;
+  --line: rgba(13, 96, 50, 0.14);
+  --shadow: 0 22px 70px rgba(13, 96, 50, 0.13);
+  --radius: 28px;
+  --container: 1180px;
+  --nav: 78px;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --paper: #07150e;
+  --ink: #f4fff5;
+  --muted: #b9cbbc;
+  --soft: #10291b;
+  --soft2: #0b1d13;
+  --line: rgba(155, 226, 72, 0.18);
+  --shadow: 0 22px 70px rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.62;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.container {
+  width: min(var(--container), calc(100% - 40px));
+  margin: auto;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 9999;
+  background: var(--deep);
+  color: #fff;
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
+}
+
+.skip-link:focus {
+  top: 14px;
+}
+
+/* Typography */
+h1, h2, h3 {
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  margin: 0 0 1rem;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 6vw, 5.7rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 2.7rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+}
+
+p {
+  color: var(--muted);
+  margin: 0 0 1rem;
+}
+
+/* Buttons */
+.btn,
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  min-height: 44px;
+  padding: 0.78rem 1.05rem;
+  border: 0;
+  background: var(--deep);
+  color: #fff;
+  font-weight: 900;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 14px 28px rgba(13, 96, 50, 0.2);
+  transition: 0.2s ease;
+}
+
+.btn:hover,
+.pill-btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-outline,
+.pill-btn {
+  background: var(--paper);
+  color: var(--deep);
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+
+.btn-light {
+  background: #fff;
+  color: var(--deep);
+}
+
+.btn-ghost-white {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: #fff;
+  box-shadow: none;
+}
+
+/* Sections */
+.section {
+  padding: 88px 0;
+}
+
+.section.compact {
+  padding: 54px 0;
+}
+
+.section-head {
+  max-width: 760px;
+}
+
+.section-head.center {
+  text-align: center;
+  margin: 0 auto 34px;
+}
+
+.eyebrow,
+.badge {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.35rem 0.78rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.eyebrow.green,
+.badge {
+  background: var(--soft);
+  border-color: var(--line);
+  color: var(--deep);
+}
+
+[data-theme="dark"] .eyebrow.green,
+[data-theme="dark"] .badge {
+  color: var(--lime);
+}
+
+/* Cards */
+.mini-card,
+.program-tile,
+.news-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 38px rgba(13, 96, 50, 0.07);
+}
+
+.mini-card {
+  padding: 1.35rem;
+}
+
+.mini-card b {
+  color: var(--main);
+  font-size: 1.05rem;
+}
+
+.mini-card p {
+  font-size: 0.96rem;
+}
+
+/* Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: 0.65s ease;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  :root {
+    --nav: 70px;
+  }
+  
+  .container {
+    width: min(100% - 28px, var(--container));
+  }
+  
+  .section {
+    padding: 62px 0;
+  }
+}

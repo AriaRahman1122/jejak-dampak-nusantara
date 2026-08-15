@@ -1,0 +1,312 @@
+/*
+  ============================================================================
+  File: components.css
+  Deskripsi: Style untuk komponen navbar dan footer
+  Author: Aria Rahman
+  Versi: 1.0.0
+  ============================================================================
+*/
+
+/* ============ NAVBAR STYLES ============ */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--nav);
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  backdrop-filter: blur(18px);
+  transition:
+    background 0.3s ease,
+    backdrop-filter 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Homepage Hero Integration */
+.site-header.hero-integrated {
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(0);
+}
+
+.site-header.hero-integrated .nav-center {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+}
+
+.site-header.hero-integrated .nav-center a {
+  color: #fff;
+}
+
+.site-header.hero-integrated .nav-center a:hover,
+.site-header.hero-integrated .nav-center a.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+}
+
+.site-header.hero-integrated .brand img {
+  filter: brightness(0) invert(1);
+}
+
+.site-header.hero-integrated .pill-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.site-header.hero-integrated .hamburger span {
+  background: #fff;
+}
+
+.site-header.hero-integrated .hamburger {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Saat scroll melewati hero, navbar menjadi putih */
+.site-header.scrolled {
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.site-header.scrolled .nav-center {
+  background: color-mix(in srgb, var(--soft) 68%, transparent);
+  border: 1px solid var(--line);
+  backdrop-filter: none;
+}
+
+.site-header.scrolled .nav-center a {
+  color: color-mix(in srgb, var(--ink) 76%, var(--muted));
+}
+
+.site-header.scrolled .nav-center a:hover,
+.site-header.scrolled .nav-center a.active {
+  background: var(--paper);
+  color: var(--deep);
+  box-shadow: 0 8px 22px rgba(13, 96, 50, 0.08);
+}
+
+.site-header.scrolled .brand img {
+  filter: none;
+}
+
+.site-header.scrolled .pill-btn {
+  background: var(--paper);
+  color: var(--deep);
+  border: 1px solid var(--line);
+}
+
+.site-header.scrolled .hamburger span {
+  background: var(--ink);
+}
+
+.site-header.scrolled .hamburger {
+  border-color: var(--line);
+  background: var(--paper);
+}
+
+.nav-shell {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 240px 1fr auto;
+  gap: 18px;
+  align-items: center;
+}
+
+.brand img {
+  width: 150px;
+  height: auto;
+}
+
+.nav-center {
+  justify-self: center;
+  display: flex;
+  gap: 4px;
+  padding: 7px;
+  background: color-mix(in srgb, var(--soft) 68%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.nav-center a {
+  white-space: nowrap;
+  padding: 0.62rem 0.95rem;
+  border-radius: 999px;
+  font-weight: 800;
+  color: color-mix(in srgb, var(--ink) 76%, var(--muted));
+  font-size: 0.94rem;
+  transition: all 0.2s ease;
+}
+
+.nav-center a:hover,
+.nav-center a.active {
+  background: var(--paper);
+  color: var(--deep);
+  box-shadow: 0 8px 22px rgba(13, 96, 50, 0.08);
+}
+
+[data-theme="dark"] .nav-center a:hover,
+[data-theme="dark"] .nav-center a.active {
+  color: var(--lime);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.btn-donate {
+  padding-inline: 1.15rem;
+}
+
+.hamburger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  padding: 10px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  background: var(--ink);
+  margin: 5px;
+  border-radius: 2px;
+}
+
+.mobile-panel {
+  display: none;
+}
+
+/* ============ FOOTER STYLES ============ */
+.site-footer {
+  background: var(--soft2);
+  border-top: 1px solid var(--line);
+  padding: 58px 0 24px;
+}
+
+.footer-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr 0.7fr 0.9fr;
+  gap: 28px;
+}
+
+.footer-logo {
+  width: 230px;
+  margin-bottom: 1rem;
+}
+
+.footer-layout h4 {
+  margin: 0 0 1rem;
+  color: var(--deep);
+}
+
+.footer-layout a {
+  display: block;
+  margin: 0.45rem 0;
+  color: var(--muted);
+  font-weight: 780;
+}
+
+.footer-layout a:hover {
+  color: var(--deep);
+}
+
+.footer-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--line);
+  margin-top: 32px;
+  padding-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: var(--muted);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .site-header {
+    height: var(--nav);
+  }
+
+  .nav-shell {
+    grid-template-columns: 1fr auto;
+  }
+
+  .brand img {
+    width: 150px;
+    height: auto;
+  }
+
+  .nav-center,
+  .btn-donate {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-actions {
+    gap: 6px;
+  }
+
+  .pill-btn {
+    min-width: 42px;
+    padding: 0 0.75rem;
+  }
+
+  .mobile-panel {
+    position: fixed;
+    left: 14px;
+    right: 14px;
+    top: calc(var(--nav) + 10px);
+    display: none;
+    grid-template-columns: 1fr;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    border-radius: 24px;
+    padding: 0.6rem;
+    z-index: 999;
+  }
+
+  .mobile-panel.open {
+    display: grid;
+  }
+
+  .mobile-panel a {
+    padding: 0.85rem 1rem;
+    border-radius: 16px;
+    font-weight: 900;
+  }
+
+  .mobile-panel a:hover {
+    background: var(--soft);
+  }
+
+  .footer-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    display: block;
+  }
+}

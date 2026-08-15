@@ -1,0 +1,482 @@
+/*
+  ============================================================================
+  File: home.css
+  Deskripsi: Style khusus untuk halaman beranda
+  Author: Aria Rahman
+  Versi: 1.0.0
+  ============================================================================
+*/
+
+/* ============ HERO SECTION ============ */
+.hero-brand {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  isolation: isolate;
+  padding-top: var(--nav);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  animation: heroZoomIn 18s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoomIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+      90deg,
+      rgba(4, 24, 13, 0.78) 0%,
+      rgba(4, 24, 13, 0.52) 42%,
+      rgba(4, 24, 13, 0.28) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(4, 24, 13, 0.1) 0%,
+      rgba(4, 24, 13, 0.62) 100%
+    );
+}
+
+/* ============ CLOUD ANIMATION ============ */
+.cloud-tunnel {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+  perspective: 900px;
+}
+
+.cloud-img {
+  position: absolute;
+  width: 520px;
+  height: auto;
+  opacity: 0;
+  object-fit: contain;
+  filter: blur(4px);
+  mix-blend-mode: screen;
+  animation: cloudMoveToCamera 10s linear infinite;
+  pointer-events: none;
+}
+
+.cloud-img-1 {
+  top: 8%;
+  left: -12%;
+  width: 620px;
+  animation-delay: -1s;
+}
+
+.cloud-img-2 {
+  top: 28%;
+  right: -16%;
+  width: 560px;
+  animation-delay: -2.5s;
+}
+
+.cloud-img-3 {
+  bottom: 14%;
+  left: 12%;
+  width: 720px;
+  animation-delay: -5s;
+}
+
+.cloud-img-4 {
+  top: 52%;
+  right: 8%;
+  width: 480px;
+  animation-delay: -7.5s;
+}
+
+.cloud-img-5 {
+  top: 2%;
+  right: 8%;
+  width: 480px;
+  animation-delay: -2s;
+}
+
+.cloud-img-6 {
+  bottom: 2%;
+  left: -12%;
+  width: 480px;
+  animation-delay: -6s;
+}
+
+.cloud-img-7 {
+  bottom: 2%;
+  right: 2%;
+  width: 480px;
+  animation-delay: -4s;
+}
+
+@keyframes cloudMoveToCamera {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, -500px) scale(0.45);
+    filter: blur(7px);
+  }
+
+  18% {
+    opacity: 0.28;
+  }
+
+  45% {
+    opacity: 0.48;
+    filter: blur(3px);
+  }
+
+  72% {
+    opacity: 0.36;
+    transform: translate3d(40px, 20px, 120px) scale(1.55);
+    filter: blur(4px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(90px, 40px, 420px) scale(2.8);
+    filter: blur(12px);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  min-height: calc(100vh - var(--nav));
+  display: flex;
+  align-items: center;
+  padding: 70px 0 110px;
+}
+
+.hero-copy {
+  max-width: 820px;
+  color: #fff;
+}
+
+.hero-copy h1 {
+  color: #fff;
+}
+
+.hero-copy p {
+  font-size: clamp(1.04rem, 2vw, 1.32rem);
+  max-width: 700px;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+/* ============ STATS SECTION ============ */
+.stats-floating {
+  position: relative;
+  z-index: 5;
+  margin-top: -70px;
+}
+
+.stats-card-wide {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  border-radius: 14px;
+  padding: 28px 10px;
+}
+
+.stats-card-wide div {
+  text-align: center;
+  padding: 6px 10px;
+}
+
+.stats-card-wide div + div {
+  border-left: 1px solid var(--line);
+}
+
+.stats-card-wide strong {
+  display: block;
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  line-height: 1;
+  color: #0d6032;
+  font-weight: 1000;
+  letter-spacing: -0.04em;
+}
+
+.stats-card-wide span {
+  display: block;
+  color: #7a7f8f;
+  font-size: 0.9rem;
+  font-weight: 800;
+  margin-top: 8px;
+}
+
+/* ============ TRUST GRID ============ */
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+/* ============ QUOTE SECTION ============ */
+.simple-quote-section {
+  padding: 72px 0;
+  background: var(--soft-bg, #f7fbf4);
+}
+
+.simple-quote {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.simple-quote .eyebrow {
+  margin-bottom: 18px;
+}
+
+.quote-text {
+  margin: 0 auto 18px;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  line-height: 1.45;
+  font-weight: 700;
+  color: var(--deep, #0d6032);
+  letter-spacing: -0.02em;
+}
+
+.quote-desc {
+  max-width: 640px;
+  margin: 0 auto 22px;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--muted, #5d6b61);
+}
+
+[data-theme="dark"] .simple-quote-section {
+  background: #0a1b13;
+}
+
+[data-theme="dark"] .quote-text {
+  color: #eff9f0;
+}
+
+[data-theme="dark"] .quote-desc {
+  color: #b5c8b9;
+}
+
+/* ============ BRAND MARQUEE ============ */
+.brand-marquee {
+  width: 100%;
+  overflow: hidden;
+  padding: 28px 0;
+}
+
+.brand-track {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  width: max-content;
+  animation: brandMarquee 45s linear infinite;
+}
+
+.brand-track.reverse {
+  animation-direction: reverse;
+}
+
+.brand-track img {
+  width: auto;
+  height: 130px;
+  max-width: 190px;
+  object-fit: contain;
+  flex: 0 0 auto;
+  opacity: 1;
+  filter: none;
+}
+
+@keyframes brandMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ============ PROGRAM GRID ============ */
+.home-program-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.program-tile {
+  display: block;
+  padding: 1.3rem;
+}
+
+.program-tile span {
+  font-size: 0.84rem;
+  color: var(--deep);
+  font-weight: 900;
+}
+
+.program-tile p {
+  font-size: 0.95rem;
+}
+
+.center-action {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* ============ NEWS GRID ============ */
+.news-grid.three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.news-card {
+  overflow: hidden;
+  display: block;
+}
+
+.news-card img {
+  height: 210px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.news-card div {
+  padding: 1.15rem;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+/* ============ CTA BAND ============ */
+.cta-band {
+  background: linear-gradient(135deg, var(--deep), var(--main));
+  color: #fff;
+  border-radius: 36px;
+  padding: clamp(1.4rem, 4vw, 3rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.cta-band h2,
+.cta-band p {
+  color: #fff;
+  max-width: 720px;
+}
+
+.cta-band div {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ============ SOFT BACKGROUND ============ */
+.soft-bg {
+  background: linear-gradient(180deg, var(--soft2), var(--paper));
+}
+
+/* ============ TEXT LINK ============ */
+.text-link {
+  color: var(--deep);
+  font-weight: 900;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .hero-brand {
+    min-height: auto;
+    padding-top: var(--nav);
+  }
+  
+  .hero-content {
+    min-height: calc(100vh - var(--nav));
+    padding: 54px 0 112px;
+  }
+  
+  .hero-copy h1 {
+    font-size: 2.7rem;
+  }
+  
+  .hero-actions {
+    display: grid;
+  }
+  
+  .stats-floating {
+    margin-top: -52px;
+  }
+  
+  .stats-card-wide {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+  
+  .stats-card-wide div + div {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  
+  .stats-card-wide strong {
+    font-size: 3rem;
+  }
+  
+  .trust-grid,
+  .home-program-grid,
+  .news-grid.three {
+    grid-template-columns: 1fr;
+  }
+  
+  .cta-band {
+    display: block;
+  }
+  
+  .cta-band div {
+    margin-top: 16px;
+  }
+  
+  .brand-track img {
+    height: 48px;
+    max-width: 150px;
+  }
+  
+  .brand-track {
+    gap: 38px;
+    animation-duration: 34s;
+  }
+  
+  .cloud-img {
+    width: 300px;
+  }
+}

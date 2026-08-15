@@ -1,0 +1,200 @@
+<!--
+  ============================================================================
+  File: index.html
+  Deskripsi: Halaman beranda utama Jejak Dampak Nusantara
+  Author: Aria Rahman
+  Versi: 1.0.0
+  ============================================================================
+-->
+<!doctype html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beranda | Jejak Dampak Nusantara</title>
+  <meta name="description" content="Website Company Profile Yayasan Jejak Dampak Nusantara">
+  <link rel="icon" href="/assets/img/logo-mark.svg" type="image/svg+xml">
+  
+  <!-- Script untuk mencegah flicker - harus dimuat sebelum CSS -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('jdn-theme');
+      const savedLang = localStorage.getItem('jdn-lang');
+      
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+      
+      if (savedLang) {
+        document.documentElement.setAttribute('lang', savedLang);
+      }
+    })();
+  </script>
+  
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/home.css">
+</head>
+<body class="home-page">
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+
+  <!-- Navbar akan di-load oleh JavaScript -->
+  <div id="navbar-container"></div>
+
+  <main id="main">
+    <section class="hero-brand">
+      <div class="hero-bg">
+        <img src="/assets/img/hero-nusantara.webp" alt="Pemandangan terasering Nusantara dari atas">
+      </div>
+      <div class="hero-shade"></div>
+      
+      <!-- Cloud Animation -->
+      <div class="cloud-tunnel" aria-hidden="true">
+        <img class="cloud-img cloud-img-1" src="/assets/img/cloud/cloud-1.webp" alt="">
+        <img class="cloud-img cloud-img-2" src="/assets/img/cloud/cloud-2.webp" alt="">
+        <img class="cloud-img cloud-img-3" src="/assets/img/cloud/cloud-3.webp" alt="">
+        <img class="cloud-img cloud-img-4" src="/assets/img/cloud/cloud-4.webp" alt="">
+        <img class="cloud-img cloud-img-5" src="/assets/img/cloud/cloud-1.webp" alt="">
+        <img class="cloud-img cloud-img-6" src="/assets/img/cloud/cloud-2.webp" alt="">
+        <img class="cloud-img cloud-img-7" src="/assets/img/cloud/cloud-3.webp" alt="">
+      </div>
+      
+      <div class="container hero-content">
+        <div class="hero-copy">
+          <span class="eyebrow" data-i18n="since2026">Jejak Dampak Nusantara · Since 2026</span>
+          <h1 data-i18n="hero-title">Setiap aksi kecil meninggalkan jejak dampak yang nyata.</h1>
+          <p data-i18n="hero-desc">Jejak Dampak Nusantara menjadi jembatan antara donatur, perusahaan, dan masyarakat untuk memajukan pendidikan, kesehatan, dan keberlanjutan di seluruh Indonesia.</p>
+          <div class="hero-actions">
+            <a class="btn" href="/donasi/" data-i18n="donate-now">Donasi Sekarang</a>
+            <a class="btn btn-light" href="/kemitraan/" data-i18n="become-partner">Jadi Mitra</a>
+            <a class="btn btn-ghost-white" href="/program/" data-i18n="view-programs">Lihat Bank Program</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-floating">
+      <div class="container stats-card-wide">
+        <div>
+          <strong data-count="15" data-suffix="+ Miliar">0</strong>
+          <span data-i18n="funds-donated">Dana Didonasikan</span>
+        </div>
+        <div>
+          <strong data-count="500" data-suffix="+">0</strong>
+          <span data-i18n="programs-completed">Program Terlaksana</span>
+        </div>
+        <div>
+          <strong data-count="75000" data-suffix="+">0</strong>
+          <span data-i18n="donors">Donatur</span>
+        </div>
+        <div>
+          <strong data-count="43" data-suffix="+">0</strong>
+          <span data-i18n="volunteers">Relawan</span>
+        </div>
+        <div>
+          <strong data-count="24" data-suffix="+">0</strong>
+          <span data-i18n="partners">Mitra</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact" id="dampak">
+      <div class="container section-head center">
+        <span class="eyebrow green" data-i18n="measurable-impact">Dampak Terukur</span>
+        <h2 data-i18n="impact-title">Dirancang agar publik lebih percaya, mitra lebih mudah mengambil keputusan.</h2>
+      </div>
+      <div class="container trust-grid">
+        <article class="mini-card">
+          <b>01</b>
+          <h3 data-i18n="clear-legality">Legalitas Jelas</h3>
+          <p data-i18n="legality-desc">Akta, pengesahan, profil pengurus, dan kontak resmi ditampilkan terbuka.</p>
+        </article>
+        <article class="mini-card">
+          <b>02</b>
+          <h3 data-i18n="impact-report">Impact Report</h3>
+          <p data-i18n="report-desc">Setiap program memiliki indikator, output, dokumentasi, dan laporan.</p>
+        </article>
+        <article class="mini-card">
+          <b>03</b>
+          <h3 data-i18n="program-bank">Bank Program</h3>
+          <p data-i18n="bank-desc">Mitra dapat memilih program sesuai isu, wilayah, SDGs, dan target dampak.</p>
+        </article>
+        <article class="mini-card">
+          <b>04</b>
+          <h3 data-i18n="csr-ready">CSR Ready</h3>
+          <p data-i18n="csr-desc">Siap dari needs assessment, desain program, implementasi, sampai M&E.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section simple-quote-section">
+      <div class="container">
+        <div class="simple-quote">
+          <span class="eyebrow green">JDN</span>
+          <p class="quote-text" data-i18n="quote-text">"Setiap aksi kecil meninggalkan jejak dampak yang nyata, terukur, dan berkelanjutan."</p>
+          <p class="quote-desc" data-i18n="quote-desc">Jejak Dampak Nusantara hadir sebagai jembatan kolaborasi antara donatur, perusahaan, dan masyarakat untuk menciptakan dampak yang dapat dibuktikan.</p>
+          <a class="text-link" href="/tentang/" data-i18n="read-profile">Baca profil yayasan →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow green" data-i18n="ecosystem">Ekosistem</span>
+          <h2 data-i18n="ecosystem-title">Partner dan Ekosistem JDN.</h2>
+        </div>
+        <div class="brand-marquee">
+          <div class="brand-track" id="brandTrack1"></div>
+        </div>
+        <div class="brand-marquee">
+          <div class="brand-track reverse" id="brandTrack2"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-bg">
+      <div class="container section-head center">
+        <span class="eyebrow green" data-i18n="featured-programs">Program Pilihan</span>
+        <h2 data-i18n="programs-title">Bank program yang siap dikembangkan bersama donatur dan mitra.</h2>
+      </div>
+      <div class="container home-program-grid" id="homeProgramGrid">
+        <!-- Programs will be loaded here -->
+      </div>
+      <div class="center-action">
+        <a class="btn" href="/program/" data-i18n="view-all-programs">Lihat Semua Program</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container section-head center">
+        <span class="eyebrow green" data-i18n="latest-news">Berita Terbaru</span>
+        <h2 data-i18n="news-title">Update cerita, program, dan transparansi dampak.</h2>
+      </div>
+      <div class="container news-grid three" id="homeNewsGrid">
+        <!-- News will be loaded here -->
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="container cta-band">
+        <h2 data-i18n="cta-title">Perluas Jejak Dampak bersama kami.</h2>
+        <p data-i18n="cta-desc">Pilih program, susun skema CSR, atau mulai campaign donasi yang transparan dan terdokumentasi.</p>
+        <div>
+          <a class="btn btn-light" href="/donasi/" data-i18n="open-campaign">Buka Campaign</a>
+          <a class="btn btn-ghost-white" href="/kemitraan/" data-i18n="partnership-discussion">Diskusi Kemitraan</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer akan di-load oleh JavaScript -->
+  <div id="footer-container"></div>
+
+  <!-- Scripts -->
+  <script src="/assets/js/components.js"></script>
+  <script src="/assets/js/translations/components.js"></script>
+  <script src="/assets/js/translations/home.js"></script>
+  <script src="/assets/js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!--
+  ============================================================================
+  File: index.html
+  Deskripsi: Halaman kemitraan Jejak Dampak Nusantara
+  Author: Aria Rahman
+  Versi: 1.0.0
+  ============================================================================
+-->
+<!doctype html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kemitraan | Jejak Dampak Nusantara</title>
+  <meta name="description" content="Kemitraan Jejak Dampak Nusantara - CSR Partnership dan Digital Crowdfunding">
+  <link rel="icon" href="/assets/img/logo-mark.svg" type="image/svg+xml">
+  
+  <!-- Script untuk mencegah flicker - harus dimuat sebelum CSS -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('jdn-theme');
+      const savedLang = localStorage.getItem('jdn-lang');
+      
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+      
+      if (savedLang) {
+        document.documentElement.setAttribute('lang', savedLang);
+      }
+    })();
+  </script>
+  
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/partnership.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+
+  <!-- Navbar akan di-load oleh JavaScript -->
+  <div id="navbar-container"></div>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="page-hero partnership-hero">
+      <div class="container">
+        <span class="eyebrow green" data-i18n="hero-eyebrow">CSR & Crowdfunding</span>
+        <h1 data-i18n="hero-title">Kemitraan yang rapi dari desain program sampai laporan dampak.</h1>
+        <p data-i18n="hero-desc">JDN membantu perusahaan, komunitas, dan institusi membangun program sosial yang terukur, profesional, transparan, dan mudah dikomunikasikan.</p>
+      </div>
+    </section>
+
+    <!-- LOGO MITRA DI BAWAH HERO -->
+    <section class="section partner-logo-section">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow green" data-i18n="trusted-eyebrow">Dipercaya Ekosistem</span>
+          <h2 data-i18n="trusted-title">Brand dan institusi yang pernah berada dalam ekosistem kolaborasi founder team.</h2>
+        </div>
+
+        <div class="brand-marquee partner-brand-marquee" aria-label="Logo mitra dan partner">
+          <div class="brand-track" id="brandTrack1"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 PILIHAN SERVIS -->
+    <section class="section service-choice-section">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow green" data-i18n="service-eyebrow">Layanan Kemitraan</span>
+          <h2 data-i18n="service-title">Pilih bentuk kolaborasi yang paling sesuai dengan kebutuhan Anda.</h2>
+          <p data-i18n="service-desc">JDN menyediakan dua jalur utama: kemitraan CSR end-to-end dan penggalangan donasi digital yang transparan.</p>
+        </div>
+
+        <div class="service-choice-grid">
+          <article class="service-choice-card reveal">
+            <span class="service-label">01</span>
+            <h3 data-i18n="csr-title">CSR Partnership</h3>
+            <p data-i18n="csr-desc">Cocok untuk perusahaan yang ingin menjalankan program sosial secara profesional, terukur, dan siap masuk laporan keberlanjutan.</p>
+            <div class="service-choice-actions">
+              <a class="btn" href="#csr-partnership-detail" data-i18n="view-detail">Lihat Detail</a>
+              <a class="btn" href="/program/" data-i18n="view-programs">Lihat Program</a>
+            </div>
+          </article>
+
+          <article class="service-choice-card light reveal">
+            <span class="service-label">02</span>
+            <h3 data-i18n="crowdfunding-title">Digital Crowdfunding</h3>
+            <p data-i18n="crowdfunding-desc">Cocok untuk campaign donasi publik, employee giving, corporate matching, dan program digital berbasis transparansi dampak.</p>
+            <a class="btn btn-light" href="#digital-crowdfunding-detail" data-i18n="view-detail">Lihat Detail</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAIL CSR -->
+    <section class="section service-detail-section soft-bg" id="csr-partnership-detail">
+      <div class="container">
+        <div class="service-detail-layout">
+          <div class="section-head">
+            <span class="eyebrow green" data-i18n="csr-eyebrow">CSR Partnership</span>
+            <h2 data-i18n="csr-detail-title">Layanan end-to-end untuk program CSR perusahaan.</h2>
+            <p data-i18n="csr-detail-desc">JDN membantu perusahaan merancang, menjalankan, memantau, dan melaporkan program CSR agar dampaknya jelas, terukur, dan mudah dipertanggungjawabkan.</p>
+          </div>
+
+          <div class="process-grid" id="csrProcessGrid">
+            <!-- Process cards akan di-load oleh JavaScript -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAIL DIGITAL CROWDFUNDING -->
+    <section class="section service-detail-section" id="digital-crowdfunding-detail">
+      <div class="container">
+        <div class="service-detail-layout">
+          <div class="section-head">
+            <span class="eyebrow green" data-i18n="crowdfunding-eyebrow">Digital Crowdfunding</span>
+            <h2 data-i18n="crowdfunding-detail-title">Campaign donasi digital yang transparan dan mudah dipercaya.</h2>
+            <p data-i18n="crowdfunding-detail-desc">JDN membantu campaign sosial tampil lebih kredibel melalui kurasi program, storytelling, update progres, dan pelaporan yang mudah dipahami donatur maupun perusahaan.</p>
+          </div>
+
+          <div class="process-grid" id="crowdfundingProcessGrid">
+            <!-- Process cards akan di-load oleh JavaScript -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KELEBIHAN JDN -->
+    <section class="section why-jdn-section soft-bg">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow green" data-i18n="why-eyebrow">Kenapa JDN?</span>
+          <h2 data-i18n="why-title">Mitra pelaksana yang fokus pada dampak, transparansi, dan keberlanjutan.</h2>
+        </div>
+
+        <div class="why-grid" id="whyGrid">
+          <!-- Why cards akan di-load oleh JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONI VERTICAL MARQUEE -->
+    <section class="section testimonial-section">
+      <div class="container testimonial-layout">
+        <div class="section-head">
+          <span class="eyebrow green" data-i18n="testimonial-eyebrow">Testimoni</span>
+          <h2 data-i18n="testimonial-title">Apa yang dicari mitra saat memilih pelaksana program sosial?</h2>
+          <p data-i18n="testimonial-desc">Kolaborasi yang baik membutuhkan komunikasi rapi, program yang jelas, dan bukti dampak yang bisa dipertanggungjawabkan.</p>
+        </div>
+
+        <div class="testimonial-columns">
+          <div class="testimonial-marquee up">
+            <div class="testimonial-track" id="testimonialTrack1"></div>
+          </div>
+
+          <div class="testimonial-marquee down">
+            <div class="testimonial-track" id="testimonialTrack2"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORM LANGSUNG DI HALAMAN -->
+    <section class="section compact partnership-form-section" id="form-kemitraan">
+      <div class="container">
+        <div class="form-panel">
+          <div class="section-head">
+            <span class="eyebrow green" data-i18n="form-eyebrow">Konsultasi Kemitraan</span>
+            <h2 data-i18n="form-title">Masih butuh bantuan memilih skema program?</h2>
+            <p data-i18n="form-desc">Isi form berikut dan tim JDN dapat membantu menyesuaikan kebutuhan program, wilayah, target penerima manfaat, dan format pelaporan.</p>
+          </div>
+
+          <form class="partner-form" data-demo-form>
+            <div class="form-grid">
+              <label>
+                <span data-i18n="form-name">Nama Lengkap</span>
+                <input type="text" name="name" placeholder="Nama Anda" required />
+              </label>
+              <label>
+                <span data-i18n="form-company">Instansi / Perusahaan</span>
+                <input type="text" name="company" placeholder="Nama instansi" required />
+              </label>
+              <label>
+                <span data-i18n="form-email">Email</span>
+                <input type="email" name="email" placeholder="nama@email.com" required />
+              </label>
+              <label>
+                <span data-i18n="form-phone">Nomor WhatsApp</span>
+                <input type="tel" name="phone" placeholder="08xxxxxxxxxx" required />
+              </label>
+              <label>
+                <span data-i18n="form-service">Jenis Kemitraan</span>
+                <select name="service" required>
+                  <option value="" data-i18n="form-select-service">Pilih jenis kemitraan</option>
+                  <option>CSR Partnership</option>
+                  <option>Digital Crowdfunding</option>
+                  <option>Employee Giving / Corporate Matching</option>
+                  <option data-i18n="form-consult">Belum yakin, ingin konsultasi dulu</option>
+                </select>
+              </label>
+              <label>
+                <span data-i18n="form-budget">Estimasi Budget</span>
+                <select name="budget">
+                  <option value="" data-i18n="form-select-budget">Pilih estimasi budget</option>
+                  <option>&lt; Rp 50 juta</option>
+                  <option>Rp 50 juta - Rp 100 juta</option>
+                  <option>Rp 100 juta - Rp 250 juta</option>
+                  <option>&gt; Rp 250 juta</option>
+                </select>
+              </label>
+            </div>
+
+            <label>
+              <span data-i18n="form-message">Ceritakan kebutuhan program</span>
+              <textarea name="message" rows="5" placeholder="Contoh: ingin membuat program pendidikan di Jawa Barat dengan laporan dampak untuk CSR perusahaan."></textarea>
+            </label>
+
+            <button class="btn" type="submit" data-i18n="form-submit">Kirim Konsultasi</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer akan di-load oleh JavaScript -->
+  <div id="footer-container"></div>
+
+  <script src="/assets/js/components.js"></script>
+  <script src="/assets/js/translations/components.js"></script>
+  <script src="/assets/js/translations/partnership.js"></script>
+  <script src="/assets/js/partnership.js"></script>
+</body>
+</html>

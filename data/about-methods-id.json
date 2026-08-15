@@ -1,0 +1,22 @@
+[
+  {
+    "number": "01",
+    "title": "Pemetaan Kebutuhan",
+    "description": "Mengidentifikasi isu, wilayah, penerima manfaat, risiko, dan potensi kolaborasi."
+  },
+  {
+    "number": "02",
+    "title": "Desain Program",
+    "description": "Menyusun tujuan, indikator, timeline, aktivitas, budget, dan target dampak."
+  },
+  {
+    "number": "03",
+    "title": "Implementasi",
+    "description": "Menjalankan program bersama komunitas, relawan, mitra lokal, dan pemangku kepentingan."
+  },
+  {
+    "number": "04",
+    "title": "Monitoring & Pelaporan",
+    "description": "Memantau progres, mengumpulkan bukti, mengevaluasi hasil, dan menyusun laporan dampak."
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "number": "01",
+    "title": {
+      "id": "Needs Assessment",
+      "en": "Needs Assessment"
+    },
+    "description": {
+      "id": "Identifikasi isu sosial, kebutuhan wilayah, target penerima manfaat, dan konteks lokal.",
+      "en": "Identify social issues, regional needs, beneficiary targets, and local context."
+    }
+  },
+  {
+    "number": "02",
+    "title": {
+      "id": "Social Mapping",
+      "en": "Social Mapping"
+    },
+    "description": {
+      "id": "Pemetaan stakeholder, potensi kolaborasi, risiko program, dan peluang dampak.",
+      "en": "Stakeholder mapping, collaboration potential, program risks, and impact opportunities."
+    }
+  },
+  {
+    "number": "03",
+    "title": {
+      "id": "Program Design",
+      "en": "Program Design"
+    },
+    "description": {
+      "id": "Perancangan tujuan, output, outcome, timeline, indikator, dan estimasi anggaran.",
+      "en": "Design of goals, outputs, outcomes, timeline, indicators, and budget estimates."
+    }
+  },
+  {
+    "number": "04",
+    "title": {
+      "id": "Implementation",
+      "en": "Implementation"
+    },
+    "description": {
+      "id": "Eksekusi lapangan, koordinasi komunitas, vendor, relawan, dan dokumentasi kegiatan.",
+      "en": "Field execution, community coordination, vendors, volunteers, and activity documentation."
+    }
+  },
+  {
+    "number": "05",
+    "title": {
+      "id": "Monitoring & Evaluation",
+      "en": "Monitoring & Evaluation"
+    },
+    "description": {
+      "id": "Pemantauan progres, evaluasi capaian, validasi data, dan pembelajaran program.",
+      "en": "Progress monitoring, achievement evaluation, data validation, and program learning."
+    }
+  },
+  {
+    "number": "06",
+    "title": {
+      "id": "Impact Reporting",
+      "en": "Impact Reporting"
+    },
+    "description": {
+      "id": "Laporan dampak profesional untuk kebutuhan internal, publikasi, ESG, atau sustainability report.",
+      "en": "Professional impact reports for internal needs, publications, ESG, or sustainability reports."
+    }
+  }
+]

@@ -1,0 +1,138 @@
+[
+  {
+    "slug": "dapur-gizi-sekolah",
+    "title": "School Nutrition Kitchen for Stunting-Prone Children",
+    "category": "Health",
+    "image": "bantuan-sekolah.webp",
+    "target": 250000000,
+    "collected": 162500000,
+    "days": 24,
+    "location": "Serang, Banten",
+    "beneficiaries": "300 children",
+    "excerpt": "Support nutritious meal packages, parent education, and monitoring of school children's growth.",
+    "content": {
+      "funded": [
+        "Procurement of main program needs.",
+        "Distribution or field implementation.",
+        "Beneficiary monitoring.",
+        "Documentation and impact reports."
+      ],
+      "timeline": [
+        {
+          "title": "Pre-implementation",
+          "description": "Verification of beneficiaries and field needs."
+        },
+        {
+          "title": "Implementation",
+          "description": "Distribution of aid, activity execution, and documentation."
+        },
+        {
+          "title": "Reporting",
+          "description": "Summary of achievements, photos, stories, and impact reports."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "sekolah-digital-terpencil",
+    "title": "Digital Learning Devices for Remote Schools",
+    "category": "Education",
+    "image": "anak-sekolah.webp",
+    "target": 180000000,
+    "collected": 103000000,
+    "days": 31,
+    "location": "Kupang, NTT",
+    "beneficiaries": "1 school",
+    "excerpt": "Help schools get learning devices, offline modules, and teacher mentoring.",
+    "content": {
+      "funded": [
+        "Procurement of digital learning devices.",
+        "Installation and device setup.",
+        "Teacher training on usage.",
+        "Mentoring and usage monitoring."
+      ],
+      "timeline": [
+        {
+          "title": "Pre-implementation",
+          "description": "School survey and device needs assessment."
+        },
+        {
+          "title": "Implementation",
+          "description": "Device procurement and installation."
+        },
+        {
+          "title": "Reporting",
+          "description": "Usage summary and learning impact."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "sumur-harapan",
+    "title": "Well of Hope for Clean Water Access",
+    "category": "Clean Water",
+    "image": "hero-nusantara.webp",
+    "target": 160000000,
+    "collected": 87500000,
+    "days": 18,
+    "location": "Ende, NTT",
+    "beneficiaries": "300 residents",
+    "excerpt": "Build clean water access and water management committees in hard-to-reach communities.",
+    "content": {
+      "funded": [
+        "Well construction and water infrastructure.",
+        "Water quality testing.",
+        "Formation of local management committee.",
+        "Clean water management education."
+      ],
+      "timeline": [
+        {
+          "title": "Pre-implementation",
+          "description": "Location survey and water needs assessment."
+        },
+        {
+          "title": "Implementation",
+          "description": "Well and infrastructure construction."
+        },
+        {
+          "title": "Reporting",
+          "description": "Water access summary and community impact."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "panel-surya-fasilitas-publik",
+    "title": "Solar Panels for Public Facilities",
+    "category": "Clean Energy",
+    "image": "solar.webp",
+    "target": 250000000,
+    "collected": 190000000,
+    "days": 40,
+    "location": "Ambon, Maluku",
+    "beneficiaries": "1 facility",
+    "excerpt": "Support PLTS installation and local operator training for public services.",
+    "content": {
+      "funded": [
+        "Solar panel installation for public facilities.",
+        "Local operator training.",
+        "System performance monitoring.",
+        "Documentation and impact reports."
+      ],
+      "timeline": [
+        {
+          "title": "Pre-implementation",
+          "description": "Facility survey and energy needs assessment."
+        },
+        {
+          "title": "Implementation",
+          "description": "PLTS installation and operator training."
+        },
+        {
+          "title": "Reporting",
+          "description": "System performance summary and service impact."
+        }
+      ]
+    }
+  }
+]

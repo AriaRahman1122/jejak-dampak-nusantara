@@ -1,0 +1,44 @@
+[
+  {
+    "icon": "01",
+    "title": "Legalitas Yayasan",
+    "description": "Informasi akta pendirian, pengesahan Kemenkumham, domisili, dan kontak resmi disediakan agar mudah diverifikasi.",
+    "link": "#legalitas",
+    "linkText": "Lihat legalitas →"
+  },
+  {
+    "icon": "02",
+    "title": "Laporan Tahunan",
+    "description": "Laporan tahunan memuat arah lembaga, capaian program, cerita dampak, kolaborasi, serta pembelajaran dari program berjalan.",
+    "link": "/kontak/",
+    "linkText": "Minta informasi →"
+  },
+  {
+    "icon": "03",
+    "title": "Laporan Keuangan",
+    "description": "Ringkasan penerimaan dan penyaluran dana disusun untuk memperjelas bagaimana dukungan publik dan mitra digunakan.",
+    "link": "/kontak/",
+    "linkText": "Hubungi tim →"
+  },
+  {
+    "icon": "04",
+    "title": "Laporan Program",
+    "description": "Setiap program dapat dilengkapi target, aktivitas, output, dokumentasi, penerima manfaat, dan rekomendasi keberlanjutan.",
+    "link": "/program/",
+    "linkText": "Lihat program →"
+  },
+  {
+    "icon": "05",
+    "title": "Dokumentasi Dampak",
+    "description": "Bukti kegiatan, cerita penerima manfaat, update lapangan, dan hasil monitoring menjadi bagian dari komunikasi dampak.",
+    "link": "/berita/",
+    "linkText": "Lihat cerita →"
+  },
+  {
+    "icon": "06",
+    "title": "Kemitraan Profesional",
+    "description": "Untuk perusahaan, laporan dapat disesuaikan dengan kebutuhan CSR, ESG, employee giving, atau sustainability report.",
+    "link": "/kemitraan/",
+    "linkText": "Lihat kemitraan →"
+  }
+]

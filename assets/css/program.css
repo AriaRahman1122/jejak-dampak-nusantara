@@ -1,0 +1,337 @@
+/*
+  ============================================================================
+  File: program.css
+  Deskripsi: Style khusus untuk halaman program
+  Author: Aria Rahman
+  Versi: 1.0.0
+  ============================================================================
+*/
+
+/* ============ PAGE HERO ============ */
+.page-hero {
+  padding: calc(var(--nav) + 60px) 0 50px;
+  background: var(--soft2);
+  text-align: left;
+}
+
+.page-hero h1 {
+  font-size: clamp(2.8rem, 6vw, 5.7rem);
+  margin-bottom: 1rem;
+  color: var(--ink);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.page-hero p {
+  font-size: clamp(1.04rem, 2vw, 1.32rem);
+  max-width: 700px;
+  color: var(--muted);
+}
+
+/* ============ TOOLBAR ============ */
+.program-toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto 210px 210px;
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.search-wrap input {
+  width: 100%;
+  min-height: 50px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 0 1.2rem;
+  outline: 0;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+}
+
+.search-wrap input:focus {
+  border-color: var(--main);
+  box-shadow: 0 0 0 3px rgba(118, 172, 60, 0.1);
+}
+
+.filter-dropdown {
+  position: relative;
+}
+
+.filter-button {
+  height: 50px;
+}
+
+.filter-button span {
+  background: var(--soft);
+  color: var(--deep);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  margin-left: 0.35rem;
+  font-size: 0.85rem;
+}
+
+.filter-panel {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 58px;
+  width: 310px;
+  max-height: 360px;
+  overflow: auto;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 0.85rem;
+  box-shadow: var(--shadow);
+  z-index: 10;
+}
+
+.filter-dropdown.open .filter-panel {
+  display: grid;
+  gap: 8px;
+}
+
+.check-row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  padding: 0.55rem;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.check-row:hover {
+  background: var(--soft);
+}
+
+.check-row input[type="checkbox"] {
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+.check-row span {
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+/* Select All Row */
+.select-all-row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  padding: 0.65rem;
+  border-radius: 14px;
+  cursor: pointer;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  margin-bottom: 8px;
+  transition: background 0.2s ease;
+}
+
+.select-all-row:hover {
+  background: var(--soft2);
+}
+
+.select-all-row input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.select-all-row span {
+  font-weight: 900;
+  color: var(--deep);
+  font-size: 0.9rem;
+}
+
+.program-toolbar select {
+  width: 100%;
+  min-height: 50px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 0 1rem;
+  outline: 0;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* ============ SELECTED FILTERS ============ */
+.selected-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+
+.selected-filters span {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  font-weight: 800;
+  color: var(--deep);
+  font-size: 0.9rem;
+}
+
+/* ============ RESULT HEAD ============ */
+.result-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  margin: 22px 0;
+}
+
+.result-head strong {
+  color: var(--ink);
+  font-size: 1.1rem;
+}
+
+.result-head span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ============ PROGRAM GRID ============ */
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.program-card {
+  position: relative;
+  padding: 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--paper);
+  box-shadow: 0 10px 32px rgba(13, 96, 50, 0.06);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.program-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(13, 96, 50, 0.12);
+}
+
+.program-card:before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--main), var(--deep));
+}
+
+.program-card .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.tag {
+  font-size: 0.76rem;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.25rem 0.55rem;
+  font-weight: 850;
+  color: var(--deep);
+}
+
+.program-card p {
+  font-size: 0.94rem;
+}
+
+.program-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.program-bottom strong {
+  color: var(--deep);
+  font-size: 0.9rem;
+}
+
+/* ============ MODAL ============ */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: none;
+}
+
+.modal.open {
+  display: block;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+.modal-card {
+  position: relative;
+  margin: 7vh auto;
+  background: var(--paper);
+  border-radius: 28px;
+  padding: 1.5rem;
+  width: min(720px, calc(100% - 32px));
+  max-height: 86vh;
+  overflow: auto;
+  box-shadow: var(--shadow);
+}
+
+.modal-close {
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .page-hero {
+    padding: calc(var(--nav) + 40px) 0 40px;
+  }
+  
+  .page-hero h1 {
+    font-size: 2.7rem;
+  }
+  
+  .program-toolbar {
+    grid-template-columns: 1fr;
+  }
+  
+  .filter-panel {
+    left: 0;
+    right: auto;
+    width: min(100%, 330px);
+  }
+  
+  .result-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .program-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,184 @@
+<!--
+  ============================================================================
+  File: donation-detail.html
+  Deskripsi: Halaman detail campaign donasi Jejak Dampak Nusantara
+  Author: Aria Rahman
+  Versi: 1.0.0
+  ============================================================================
+-->
+<!doctype html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detail Donasi | Jejak Dampak Nusantara</title>
+  <meta name="description" content="Detail Campaign Donasi Jejak Dampak Nusantara">
+  <link rel="icon" href="/assets/img/logo-mark.svg" type="image/svg+xml">
+  
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('jdn-theme');
+      const savedLang = localStorage.getItem('jdn-lang');
+      
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+      
+      if (savedLang) {
+        document.documentElement.setAttribute('lang', savedLang);
+      }
+    })();
+  </script>
+  
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/donation.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+
+  <div id="navbar-container"></div>
+
+  <main id="main">
+    <section class="campaign-detail-hero">
+      <div class="container split-2">
+        <div>
+          <span class="badge" id="campaignCategory">Kategori</span>
+          <h1 id="campaignTitle">Judul Campaign</h1>
+          <p id="campaignExcerpt">Ringkasan campaign</p>
+          <div class="campaign-facts" id="campaignFacts">
+            <!-- Facts akan di-load oleh JavaScript -->
+          </div>
+        </div>
+        <div class="donate-box">
+          <img id="campaignImage" src="" alt="Gambar Campaign">
+          <div class="progress">
+            <span id="campaignProgress" style="width: 0%"></span>
+          </div>
+          <div class="campaign-meta">
+            <strong id="campaignCollected">Rp 0</strong>
+            <span id="campaignTarget">dari Rp 0</span>
+          </div>
+          <a class="btn full" href="#form-donasi" data-i18n="donate-now">Donasi Sekarang</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container article-layout">
+        <article class="article-content">
+          <h2 data-i18n="detail-title">Detail Campaign</h2>
+          <p data-i18n="detail-desc">Campaign ini mendukung penerima manfaat melalui rangkaian aktivitas yang terukur, terdokumentasi, dan dilaporkan secara berkala kepada donatur.</p>
+          
+          <h3 data-i18n="funded-title">Yang didanai</h3>
+          <ul id="fundedList">
+            <!-- Funded items akan di-load oleh JavaScript -->
+          </ul>
+          
+          <h3 data-i18n="update-title">Update Program</h3>
+          <div class="timeline" id="timelineList">
+            <!-- Timeline akan di-load oleh JavaScript -->
+          </div>
+        </article>
+
+        <!-- Form Donasi yang Lebih Menarik -->
+        <aside class="donation-form-box sticky" id="form-donasi">
+          <h3 data-i18n="form-title">Form Donasi</h3>
+          
+          <!-- Preset Nominal Buttons -->
+          <div class="donation-presets">
+            <button type="button" class="preset-btn" data-amount="25000">Rp 25rb</button>
+            <button type="button" class="preset-btn active" data-amount="50000">Rp 50rb</button>
+            <button type="button" class="preset-btn" data-amount="100000">Rp 100rb</button>
+            <button type="button" class="preset-btn" data-amount="250000">Rp 250rb</button>
+            <button type="button" class="preset-btn" data-amount="500000">Rp 500rb</button>
+          </div>
+          
+          <!-- Slider Nominal -->
+          <div class="donation-slider-wrap">
+            <div class="donation-amount-display">
+              <span data-i18n="donation-amount">Nominal Donasi</span>
+              <strong id="donationAmountDisplay">Rp 50.000</strong>
+            </div>
+            <input 
+              type="range" 
+              id="donationSlider" 
+              min="10000" 
+              max="1000000" 
+              step="10000" 
+              value="50000"
+              class="donation-slider"
+            >
+            <div class="slider-labels">
+              <span>Rp 10rb</span>
+              <span>Rp 1jt</span>
+            </div>
+          </div>
+          
+          <!-- Impact Preview -->
+          <div class="impact-preview" id="impactPreview">
+            <span class="impact-icon">💚</span>
+            <p id="impactText">Dengan Rp 50.000, Anda membantu menyediakan makanan bergizi untuk anak sekolah.</p>
+          </div>
+          
+          <!-- Metode Pembayaran -->
+          <div class="payment-methods">
+            <span class="payment-label" data-i18n="payment-method">Metode Pembayaran</span>
+            <div class="payment-options">
+              <button type="button" class="payment-btn active" data-method="qris">
+                <span class="payment-icon">📱</span>
+                <span>QRIS</span>
+              </button>
+              <button type="button" class="payment-btn" data-method="gopay">
+                <span class="payment-icon">💚</span>
+                <span>GoPay</span>
+              </button>
+              <button type="button" class="payment-btn" data-method="ovo">
+                <span class="payment-icon">💜</span>
+                <span>OVO</span>
+              </button>
+              <button type="button" class="payment-btn" data-method="transfer">
+                <span class="payment-icon">🏦</span>
+                <span data-i18n="bank-transfer">Transfer Bank</span>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Form Input -->
+          <div class="donation-inputs">
+            <input class="input" placeholder="Nama Donatur" data-i18n-placeholder="name-placeholder">
+            <input class="input" placeholder="Email / WhatsApp" data-i18n-placeholder="contact-placeholder">
+          </div>
+          
+          <!-- Anonim Checkbox -->
+          <label class="anonymous-check">
+            <input type="checkbox" id="anonymousDonation">
+            <span data-i18n="anonymous-donation">Sembunyikan nama saya (Donatur Anonim)</span>
+          </label>
+          
+          <!-- Submit Button -->
+          <button class="btn full donation-submit" data-demo-form>
+            <span data-i18n="submit-donation">Kirim Donasi</span>
+            <span class="submit-amount" id="submitAmount">Rp 50.000</span>
+          </button>
+          
+          <p class="small-text" data-i18n="form-note">Form siap disambungkan ke payment gateway.</p>
+          
+          <!-- Trust Badge -->
+          <div class="trust-badges">
+            <span>🔒 <span data-i18n="secure-payment">Pembayaran Aman</span></span>
+            <span>📊 <span data-i18n="transparent-report">Laporan Transparan</span></span>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script src="/assets/js/components.js"></script>
+  <script src="/assets/js/translations/components.js"></script>
+  <script src="/assets/js/translations/donation.js"></script>
+  <script src="/assets/js/donation-detail.js"></script>
+</body>
+</html>

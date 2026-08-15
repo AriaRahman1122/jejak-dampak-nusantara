@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Asep Nugraha",
+    "position": "Founder & CEO",
+    "description": "Strategic Leadership, CSR Partnership, dan Grant Management. Berpengalaman memimpin sektor sosial, mengelola dana sosial, dan menjalankan ratusan program di berbagai provinsi.",
+    "image": "/assets/img/founder-asep.webp"
+  },
+  {
+    "name": "Wildan Maulana",
+    "position": "Co-Founder & Head of Program Development",
+    "description": "Fokus pada Program Design, Social Mapping, dan CSR Implementation untuk memastikan program sesuai kebutuhan lapangan.",
+    "image": "/assets/img/founder-wildan.png"
+  },
+  {
+    "name": "Salman Hizbullah",
+    "position": "Co-Founder & Head of Marketing",
+    "description": "Fokus pada Digital Marketing, Performance Campaign, Brand Strategy, dan pertumbuhan kanal digital organisasi sosial.",
+    "image": "/assets/img/founder-salman.png"
+  }
+]

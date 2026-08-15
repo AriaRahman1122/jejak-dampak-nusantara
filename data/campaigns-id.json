@@ -1,0 +1,138 @@
+[
+  {
+    "slug": "dapur-gizi-sekolah",
+    "title": "Dapur Gizi Sekolah untuk Anak Rentan Stunting",
+    "category": "Kesehatan",
+    "image": "bantuan-sekolah.webp",
+    "target": 250000000,
+    "collected": 162500000,
+    "days": 24,
+    "location": "Serang, Banten",
+    "beneficiaries": "300 anak",
+    "excerpt": "Dukung paket makan bergizi, edukasi orang tua, dan monitoring tumbuh kembang anak sekolah.",
+    "content": {
+      "funded": [
+        "Pengadaan kebutuhan utama sesuai program.",
+        "Distribusi atau implementasi lapangan.",
+        "Monitoring penerima manfaat.",
+        "Dokumentasi dan laporan dampak."
+      ],
+      "timeline": [
+        {
+          "title": "Pra-implementasi",
+          "description": "Verifikasi penerima manfaat dan kebutuhan lapangan."
+        },
+        {
+          "title": "Implementasi",
+          "description": "Distribusi bantuan, pelaksanaan kegiatan, dan dokumentasi."
+        },
+        {
+          "title": "Pelaporan",
+          "description": "Rekap capaian, foto, cerita, dan laporan dampak."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "sekolah-digital-terpencil",
+    "title": "Perangkat Belajar Digital untuk Sekolah Terpencil",
+    "category": "Pendidikan",
+    "image": "anak-sekolah.webp",
+    "target": 180000000,
+    "collected": 103000000,
+    "days": 31,
+    "location": "Kupang, NTT",
+    "beneficiaries": "1 sekolah",
+    "excerpt": "Bantu sekolah mendapatkan perangkat belajar, modul offline, dan pendampingan guru.",
+    "content": {
+      "funded": [
+        "Pengadaan perangkat belajar digital.",
+        "Instalasi dan setup perangkat.",
+        "Pelatihan guru dalam penggunaan.",
+        "Pendampingan dan monitoring penggunaan."
+      ],
+      "timeline": [
+        {
+          "title": "Pra-implementasi",
+          "description": "Survey sekolah dan kebutuhan perangkat."
+        },
+        {
+          "title": "Implementasi",
+          "description": "Pengadaan dan instalasi perangkat belajar."
+        },
+        {
+          "title": "Pelaporan",
+          "description": "Rekap penggunaan dan dampak pembelajaran."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "sumur-harapan",
+    "title": "Sumur Harapan untuk Akses Air Bersih",
+    "category": "Air Bersih",
+    "image": "hero-nusantara.webp",
+    "target": 160000000,
+    "collected": 87500000,
+    "days": 18,
+    "location": "Ende, NTT",
+    "beneficiaries": "300 warga",
+    "excerpt": "Bangun akses air bersih dan komite pengelola air di komunitas sulit akses.",
+    "content": {
+      "funded": [
+        "Pembangunan sumur dan infrastruktur air.",
+        "Uji kualitas air.",
+        "Pembentukan komite pengelola lokal.",
+        "Edukasi pengelolaan air bersih."
+      ],
+      "timeline": [
+        {
+          "title": "Pra-implementasi",
+          "description": "Survey lokasi dan kebutuhan air."
+        },
+        {
+          "title": "Implementasi",
+          "description": "Pembangunan sumur dan infrastruktur."
+        },
+        {
+          "title": "Pelaporan",
+          "description": "Rekap akses air dan dampak komunitas."
+        }
+      ]
+    }
+  },
+  {
+    "slug": "panel-surya-fasilitas-publik",
+    "title": "Panel Surya untuk Fasilitas Publik",
+    "category": "Energi Bersih",
+    "image": "solar.webp",
+    "target": 250000000,
+    "collected": 190000000,
+    "days": 40,
+    "location": "Ambon, Maluku",
+    "beneficiaries": "1 fasilitas",
+    "excerpt": "Dukung pemasangan PLTS dan pelatihan operator lokal untuk layanan publik.",
+    "content": {
+      "funded": [
+        "Instalasi panel surya untuk fasilitas publik.",
+        "Pelatihan operator lokal.",
+        "Monitoring kinerja sistem.",
+        "Dokumentasi dan laporan dampak."
+      ],
+      "timeline": [
+        {
+          "title": "Pra-implementasi",
+          "description": "Survey fasilitas dan kebutuhan energi."
+        },
+        {
+          "title": "Implementasi",
+          "description": "Instalasi PLTS dan pelatihan operator."
+        },
+        {
+          "title": "Pelaporan",
+          "description": "Rekap kinerja sistem dan dampak layanan."
+        }
+      ]
+    }
+  }
+]

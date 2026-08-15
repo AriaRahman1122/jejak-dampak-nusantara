@@ -1,0 +1,72 @@
+{
+  "column1": [
+    {
+      "quote": {
+        "id": "Kami membutuhkan partner yang bisa membantu dari pemetaan kebutuhan sampai laporan akhir.",
+        "en": "We need a partner who can help from needs mapping to final reporting."
+      },
+      "name": "CSR Manager",
+      "role": {
+        "id": "Perusahaan Nasional",
+        "en": "National Company"
+      }
+    },
+    {
+      "quote": {
+        "id": "Program lebih mudah dikomunikasikan karena punya indikator dan dokumentasi yang rapi.",
+        "en": "Programs are easier to communicate because they have neat indicators and documentation."
+      },
+      "name": "Community Lead",
+      "role": {
+        "id": "Brand Digital",
+        "en": "Digital Brand"
+      }
+    },
+    {
+      "quote": {
+        "id": "Bank program membantu kami memilih isu sosial yang paling relevan dengan tujuan perusahaan.",
+        "en": "The program bank helps us choose social issues most relevant to company goals."
+      },
+      "name": "Partnership Lead",
+      "role": {
+        "id": "Institusi Kolaborator",
+        "en": "Collaborator Institution"
+      }
+    }
+  ],
+  "column2": [
+    {
+      "quote": {
+        "id": "Kami ingin donatur melihat progres secara transparan, bukan hanya laporan setelah program selesai.",
+        "en": "We want donors to see progress transparently, not just reports after the program ends."
+      },
+      "name": "Campaign Owner",
+      "role": {
+        "id": "Program Crowdfunding",
+        "en": "Crowdfunding Program"
+      }
+    },
+    {
+      "quote": {
+        "id": "Kebutuhan kami adalah program yang bisa dijalankan, dikurasi, dan dilaporkan dengan standar profesional.",
+        "en": "Our need is programs that can be executed, curated, and reported with professional standards."
+      },
+      "name": "ESG Officer",
+      "role": {
+        "id": "Korporasi",
+        "en": "Corporation"
+      }
+    },
+    {
+      "quote": {
+        "id": "Employee giving menjadi lebih menarik ketika ada update dampak yang mudah dipahami karyawan.",
+        "en": "Employee giving becomes more interesting when there are impact updates that employees can easily understand."
+      },
+      "name": "HR Engagement",
+      "role": {
+        "id": "Perusahaan Mitra",
+        "en": "Partner Company"
+      }
+    }
+  ]
+}

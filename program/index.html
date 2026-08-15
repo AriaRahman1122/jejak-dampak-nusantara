@@ -1,0 +1,100 @@
+<!--
+  ============================================================================
+  File: index.html
+  Deskripsi: Halaman program Jejak Dampak Nusantara
+  Author: Aria Rahman
+  Versi: 1.0.0
+  ============================================================================
+-->
+<!doctype html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Program | Jejak Dampak Nusantara</title>
+  <meta name="description" content="Bank Program Jejak Dampak Nusantara">
+  <link rel="icon" href="/assets/img/logo-mark.svg" type="image/svg+xml">
+  
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('jdn-theme');
+      const savedLang = localStorage.getItem('jdn-lang');
+      
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+      
+      if (savedLang) {
+        document.documentElement.setAttribute('lang', savedLang);
+      }
+    })();
+  </script>
+  
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/program.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+
+  <div id="navbar-container"></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow green" data-i18n="hero-eyebrow">Bank Program</span>
+        <h1 data-i18n="hero-title">Temukan program berdasarkan kategori dan wilayah.</h1>
+        <p data-i18n="hero-desc">Gunakan search, pilih beberapa kategori, lalu filter provinsi untuk menemukan program yang paling sesuai.</p>
+      </div>
+    </section>
+
+    <section class="section program-section">
+      <div class="container">
+        <div class="program-toolbar">
+          <div class="search-wrap">
+            <input
+              type="search"
+              id="programSearch"
+              placeholder="Cari program, kategori, SDGs, provinsi..."
+              data-i18n-placeholder="search-placeholder"
+            />
+          </div>
+          <div class="filter-dropdown" data-filter-dropdown>
+            <button type="button" class="btn btn-outline filter-button">
+              <span data-i18n="category-label">Kategori</span> <span data-category-count>Semua</span>
+            </button>
+            <div class="filter-panel" data-category-panel></div>
+          </div>
+          <select id="provinceFilter">
+            <option value="all" data-i18n="all-provinces">Semua Provinsi</option>
+          </select>
+        </div>
+
+        <div class="selected-filters" data-selected-filters></div>
+
+        <div class="result-head">
+          <strong><span data-program-count>0</span> <span data-i18n="program-count-label">program</span></strong>
+          <span data-i18n="result-hint">klik card untuk melihat detail program</span>
+        </div>
+
+        <div class="program-grid" id="programGrid"></div>
+      </div>
+    </section>
+
+    <div class="modal" id="programModal" aria-hidden="true">
+      <div class="modal-backdrop" data-close-modal></div>
+      <div class="modal-card">
+        <button class="modal-close" data-close-modal>×</button>
+        <div id="programModalContent"></div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script src="/assets/js/components.js"></script>
+  <script src="/assets/js/translations/components.js"></script>
+  <script src="/assets/js/translations/program.js"></script>
+  <script src="/assets/js/program.js"></script>
+</body>
+</html>

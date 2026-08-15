@@ -1,0 +1,68 @@
+[
+  {
+    "number": "01",
+    "title": {
+      "id": "Kurasi Program",
+      "en": "Program Curation"
+    },
+    "description": {
+      "id": "Memilih program yang relevan, layak dijalankan, dan memiliki kebutuhan yang jelas.",
+      "en": "Selecting relevant programs that are feasible and have clear needs."
+    }
+  },
+  {
+    "number": "02",
+    "title": {
+      "id": "Campaign Storytelling",
+      "en": "Campaign Storytelling"
+    },
+    "description": {
+      "id": "Menyusun narasi campaign, urgensi isu, target donasi, dan cerita penerima manfaat.",
+      "en": "Compose campaign narratives, issue urgency, donation targets, and beneficiary stories."
+    }
+  },
+  {
+    "number": "03",
+    "title": {
+      "id": "Landing Campaign",
+      "en": "Landing Campaign"
+    },
+    "description": {
+      "id": "Menyiapkan halaman campaign dengan informasi target, progres, lokasi, dan manfaat.",
+      "en": "Prepare campaign pages with target information, progress, location, and benefits."
+    }
+  },
+  {
+    "number": "04",
+    "title": {
+      "id": "Donation Flow",
+      "en": "Donation Flow"
+    },
+    "description": {
+      "id": "Mengatur alur donasi agar sederhana, nyaman, dan siap diintegrasikan dengan kanal pembayaran.",
+      "en": "Arrange donation flow to be simple, comfortable, and ready to integrate with payment channels."
+    }
+  },
+  {
+    "number": "05",
+    "title": {
+      "id": "Impact Update",
+      "en": "Impact Update"
+    },
+    "description": {
+      "id": "Update lapangan, dokumentasi kegiatan, progres dana, dan bukti implementasi program.",
+      "en": "Field updates, activity documentation, fund progress, and program implementation evidence."
+    }
+  },
+  {
+    "number": "06",
+    "title": {
+      "id": "Corporate Matching",
+      "en": "Corporate Matching"
+    },
+    "description": {
+      "id": "Skema donasi karyawan, matching dari perusahaan, dan rekap partisipasi internal.",
+      "en": "Employee donation schemes, company matching, and internal participation recaps."
+    }
+  }
+]

@@ -1,0 +1,118 @@
+<!--
+  ============================================================================
+  File: index.html
+  Deskripsi: Halaman daftar berita Jejak Dampak Nusantara
+  Author: Aria Rahman
+  Versi: 1.0.0
+  ============================================================================
+-->
+<!doctype html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Berita | Jejak Dampak Nusantara</title>
+  <meta name="description" content="Daftar berita dan update terbaru dari Jejak Dampak Nusantara">
+  <link rel="icon" href="/assets/img/logo-mark.svg" type="image/svg+xml">
+  
+  <!-- Script untuk mencegah flicker - harus dimuat sebelum CSS -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('jdn-theme');
+      const savedLang = localStorage.getItem('jdn-lang');
+      
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+      
+      if (savedLang) {
+        document.documentElement.setAttribute('lang', savedLang);
+      }
+    })();
+  </script>
+  
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/components.css">
+  <link rel="stylesheet" href="/assets/css/news.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+
+  <!-- Navbar akan di-load oleh JavaScript -->
+  <div id="navbar-container"></div>
+
+  <main id="main">
+    <!-- Page Hero Section -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow green" data-i18n="news-eyebrow">Berita & Update</span>
+        <h1 data-i18n="news-page-title">Cerita dampak, program, dan transparansi.</h1>
+        <p data-i18n="news-page-desc">Ikuti perkembangan terbaru dari Jejak Dampak Nusantara. Kami membagikan cerita dampak, update program, dan laporan transparansi secara berkala.</p>
+      </div>
+    </section>
+
+    <!-- News List Section -->
+    <section class="section">
+      <div class="container">
+        <!-- Toolbar dengan Search dan Filter -->
+        <div class="news-toolbar">
+          <div class="search-wrap">
+            <input
+              type="search"
+              id="newsSearch"
+              placeholder="Cari berita, kategori..."
+              data-i18n-placeholder="search-placeholder"
+            />
+          </div>
+          <div class="filter-dropdown" data-filter-dropdown>
+            <button type="button" class="btn btn-outline filter-button">
+              <span data-i18n="category-label">Kategori</span> <span data-category-count>Semua</span>
+            </button>
+            <div class="filter-panel" data-category-panel></div>
+          </div>
+        </div>
+        
+        <div class="selected-filters" data-selected-filters></div>
+        
+        <div class="result-head">
+          <strong><span data-news-count>0</span> <span data-i18n="news-count-label">berita</span></strong>
+          <span data-i18n="result-hint">klik card untuk membaca berita</span>
+        </div>
+
+        <!-- News Layout dengan Sidebar -->
+        <div class="news-layout">
+          <!-- Main News Grid -->
+          <div class="news-main">
+            <div class="news-grid" id="newsGrid">
+              <!-- News cards akan di-load oleh JavaScript -->
+            </div>
+
+            <!-- Load More Button -->
+            <div class="center-action" id="loadMoreContainer" style="display: none;">
+              <button class="btn btn-outline" id="loadMoreBtn" data-i18n="load-more">Muat Lebih Banyak</button>
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <aside class="news-sidebar">
+            <div class="sidebar-widget">
+              <h3 class="sidebar-title" data-i18n="popular-news">Berita Terpopuler</h3>
+              <div id="popularNewsList" class="popular-news-list">
+                <!-- Popular news akan di-load oleh JavaScript -->
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer akan di-load oleh JavaScript -->
+  <div id="footer-container"></div>
+
+  <script src="/assets/js/components.js"></script>
+  <script src="/assets/js/translations/components.js"></script>
+  <script src="/assets/js/translations/news.js"></script>
+  <script src="/assets/js/news.js"></script>
+</body>
+</html>
