@@ -84,7 +84,7 @@
     }
     
     const lang = getLang();
-    const campaigns = await loadJSON(`/data/campaigns-${lang}.json`);
+    const campaigns = await loadJSON(`../data/campaigns-${lang}.json`);
     if (!campaigns) return;
     
     const campaign = campaigns.find(c => c.slug === slug);
@@ -124,7 +124,7 @@
     // Update campaign image
     const imageEl = qs('#campaignImage');
     if (imageEl) {
-      imageEl.src = `/assets/img/${campaign.image}`;
+      imageEl.src = `../assets/img/${campaign.image}`;
       imageEl.alt = campaign.title;
     }
     

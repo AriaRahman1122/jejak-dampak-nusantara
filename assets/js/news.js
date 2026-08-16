@@ -84,7 +84,7 @@
   // Load news data berdasarkan bahasa
   async function loadNews() {
     const lang = getLang();
-    const news = await loadJSON(`/data/news-${lang}.json`);
+    const news = await loadJSON(`../data/news-${lang}.json`);
     if (!news) return;
     
     allNews = news;
@@ -212,8 +212,8 @@
     // Render news cards
     newsGrid.innerHTML = newsToShow
       .map((news) => `
-        <a class="news-card" href="/berita/detail.html?slug=${encodeURIComponent(news.slug)}">
-          <img src="/assets/img/${escapeHtml(news.image)}" alt="${escapeHtml(news.title)}">
+        <a class="news-card" href="../berita/detail.html?slug=${encodeURIComponent(news.slug)}">
+          <img src="../assets/img/${escapeHtml(news.image)}" alt="${escapeHtml(news.title)}">
           <div class="news-card-body">
             <div class="news-card-meta">
               <span class="news-card-category">${escapeHtml(news.category)}</span>
@@ -248,7 +248,7 @@
     
     popularList.innerHTML = popularNews
       .map((news, index) => `
-        <a class="popular-news-item" href="/berita/detail.html?slug=${encodeURIComponent(news.slug)}">
+        <a class="popular-news-item" href="../berita/detail.html?slug=${encodeURIComponent(news.slug)}">
           <span class="popular-news-rank">${index + 1}</span>
           <div class="popular-news-content">
             <div class="popular-news-title">${escapeHtml(news.title)}</div>

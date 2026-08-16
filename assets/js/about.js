@@ -74,7 +74,7 @@
     if (!methodGrid) return;
     
     const lang = getLang();
-    const methods = await loadJSON(`/data/about-methods-${lang}.json`);
+    const methods = await loadJSON(`../data/about-methods-${lang}.json`);
     if (!methods) return;
     
     methodGrid.innerHTML = methods
@@ -94,7 +94,7 @@
     if (!legalGrid) return;
     
     const lang = getLang();
-    const legal = await loadJSON(`/data/about-legal-${lang}.json`);
+    const legal = await loadJSON(`../data/about-legal-${lang}.json`);
     if (!legal) return;
     
     legalGrid.innerHTML = legal
@@ -114,7 +114,7 @@
     if (!trustGrid) return;
     
     const lang = getLang();
-    const trust = await loadJSON(`/data/about-trust-${lang}.json`);
+    const trust = await loadJSON(`../data/about-trust-${lang}.json`);
     if (!trust) return;
     
     trustGrid.innerHTML = trust
@@ -135,7 +135,7 @@
     if (!founderGrid) return;
     
     const lang = getLang();
-    const founders = await loadJSON(`/data/about-founders-${lang}.json`);
+    const founders = await loadJSON(`../data/about-founders-${lang}.json`);
     if (!founders) return;
     
     founderGrid.innerHTML = founders
@@ -156,7 +156,7 @@
     if (!faqList) return;
     
     const lang = getLang();
-    const faq = await loadJSON(`/data/about-faq-${lang}.json`);
+    const faq = await loadJSON(`../data/about-faq-${lang}.json`);
     if (!faq) return;
     
     faqList.innerHTML = faq

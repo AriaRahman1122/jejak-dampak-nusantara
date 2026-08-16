@@ -92,8 +92,8 @@
   // Load programs data berdasarkan bahasa
   async function loadPrograms() {
     const lang = getLang();
-    const programs = await loadJSON(`/data/programs-${lang}.json`);
-    const categories = await loadJSON(`/data/categories-${lang}.json`);
+    const programs = await loadJSON(`../data/programs-${lang}.json`);
+    const categories = await loadJSON(`../data/categories-${lang}.json`);
     
     if (!programs || !categories) return;
     
@@ -266,7 +266,7 @@
         <li>${t('scope-2')}</li>
         <li>${t('scope-3')}</li>
       </ul>
-      <a class="btn" href="/kemitraan/#form-kemitraan">${t('consult-program')}</a>
+      <a class="btn" href="../kemitraan/#form-kemitraan">${t('consult-program')}</a>
     `;
     
     const modal = qs('#programModal');

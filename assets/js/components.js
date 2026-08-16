@@ -10,23 +10,40 @@
 // components.js - Load navbar, footer, dan handle theme/language toggle
 (function() {
   console.log('components.js v1.0.0 loaded');
-  
+
+  // ------------------------------------------------------------------------
+  // BASE: URL root situs, dihitung otomatis dari lokasi file ini sendiri.
+  // components.js SELALU berada di "assets/js/components.js" relatif dari
+  // root situs, jadi kita bisa mundur dari src file ini untuk menemukan
+  // root-nya - baik saat lokal (http://localhost:8000/) maupun saat di-host
+  // di subpath seperti GitHub Pages project (https://user.github.io/repo/).
+  // Ini membuat navbar/footer tetap benar di kedalaman folder berapa pun.
+  // ------------------------------------------------------------------------
+  const BASE = (function() {
+    const script = document.currentScript;
+    if (script && script.src) {
+      return script.src.replace(/assets\/js\/components\.js.*$/, '');
+    }
+    return '/'; // fallback jika currentScript tidak tersedia
+  })();
+  const BASE_PATH = new URL(BASE).pathname;
+
   // Navbar HTML
   const navbarHTML = `
     <header class="site-header" id="top">
       <div class="container nav-shell">
-        <a class="brand" href="/" aria-label="Jejak Dampak Nusantara">
-          <img src="/assets/img/logo.svg" alt="Jejak Dampak Nusantara">
+        <a class="brand" href="${BASE}" aria-label="Jejak Dampak Nusantara">
+          <img src="${BASE}assets/img/logo.svg" alt="Jejak Dampak Nusantara">
         </a>
         <nav class="nav-center" aria-label="Navigasi utama">
-          <a href="/" data-i18n="nav-home">Beranda</a>
-          <a href="/tentang/" data-i18n="nav-about">Tentang</a>
-          <a href="/program/" data-i18n="nav-programs">Program</a>
-          <a href="/kemitraan/" data-i18n="nav-partnership">Kemitraan</a>
-          <a href="/berita/" data-i18n="nav-news">Berita</a>
+          <a href="${BASE}" data-i18n="nav-home">Beranda</a>
+          <a href="${BASE}tentang/" data-i18n="nav-about">Tentang</a>
+          <a href="${BASE}program/" data-i18n="nav-programs">Program</a>
+          <a href="${BASE}kemitraan/" data-i18n="nav-partnership">Kemitraan</a>
+          <a href="${BASE}berita/" data-i18n="nav-news">Berita</a>
         </nav>
         <div class="nav-actions">
-          <a class="btn btn-donate" href="/donasi/" data-i18n="donate-now">Donasi Sekarang</a>
+          <a class="btn btn-donate" href="${BASE}donasi/" data-i18n="donate-now">Donasi Sekarang</a>
           <button class="pill-btn lang-toggle" type="button" aria-label="Ganti Bahasa">EN</button>
           <button class="pill-btn theme-toggle" type="button" aria-label="Ganti Mode">☾</button>
           <button class="hamburger" type="button" aria-label="Buka Menu">
@@ -35,12 +52,12 @@
         </div>
       </div>
       <div class="mobile-panel" aria-hidden="true">
-        <a href="/" data-i18n="nav-home">Beranda</a>
-        <a href="/tentang/" data-i18n="nav-about">Tentang</a>
-        <a href="/program/" data-i18n="nav-programs">Program</a>
-        <a href="/kemitraan/" data-i18n="nav-partnership">Kemitraan</a>
-        <a href="/berita/" data-i18n="nav-news">Berita</a>
-        <a href="/donasi/" data-i18n="donate-now">Donasi Sekarang</a>
+        <a href="${BASE}" data-i18n="nav-home">Beranda</a>
+        <a href="${BASE}tentang/" data-i18n="nav-about">Tentang</a>
+        <a href="${BASE}program/" data-i18n="nav-programs">Program</a>
+        <a href="${BASE}kemitraan/" data-i18n="nav-partnership">Kemitraan</a>
+        <a href="${BASE}berita/" data-i18n="nav-news">Berita</a>
+        <a href="${BASE}donasi/" data-i18n="donate-now">Donasi Sekarang</a>
       </div>
     </header>
   `;
@@ -50,26 +67,26 @@
     <footer class="site-footer">
       <div class="container footer-layout">
         <div>
-          <img class="footer-logo" src="/assets/img/logo.svg" alt="Jejak Dampak Nusantara">
+          <img class="footer-logo" src="${BASE}assets/img/logo.svg" alt="Jejak Dampak Nusantara">
           <p data-i18n="footer-desc">Yayasan Jejak Dampak Nusantara adalah jembatan kolaborasi antara donatur, perusahaan, dan masyarakat untuk pendidikan, kesehatan, dan keberlanjutan.</p>
           <div class="footer-actions">
-            <a class="btn" href="/donasi/" data-i18n="donate-now">Donasi Sekarang</a>
-            <a class="btn btn-outline" href="/kemitraan/" data-i18n="become-partner">Jadi Mitra</a>
+            <a class="btn" href="${BASE}donasi/" data-i18n="donate-now">Donasi Sekarang</a>
+            <a class="btn btn-outline" href="${BASE}kemitraan/" data-i18n="become-partner">Jadi Mitra</a>
           </div>
         </div>
         <div>
           <h4 data-i18n="menu">Menu</h4>
-          <a href="/tentang/" data-i18n="nav-about">Tentang</a>
-          <a href="/program/" data-i18n="nav-programs">Program</a>
-          <a href="/kemitraan/" data-i18n="nav-partnership">Kemitraan</a>
-          <a href="/berita/" data-i18n="nav-news">Berita</a>
+          <a href="${BASE}tentang/" data-i18n="nav-about">Tentang</a>
+          <a href="${BASE}program/" data-i18n="nav-programs">Program</a>
+          <a href="${BASE}kemitraan/" data-i18n="nav-partnership">Kemitraan</a>
+          <a href="${BASE}berita/" data-i18n="nav-news">Berita</a>
         </div>
         <div>
           <h4 data-i18n="trust">Kepercayaan</h4>
-          <a href="/#dampak" data-i18n="impact">Dampak</a>
-          <a href="/#transparansi" data-i18n="transparency">Transparansi</a>
-          <a href="/donasi/" data-i18n="donation-campaign">Campaign Donasi</a>
-          <a href="/kontak/" data-i18n="contact">Kontak</a>
+          <a href="${BASE}#dampak" data-i18n="impact">Dampak</a>
+          <a href="${BASE}#transparansi" data-i18n="transparency">Transparansi</a>
+          <a href="${BASE}donasi/" data-i18n="donation-campaign">Campaign Donasi</a>
+          <a href="${BASE}kontak/" data-i18n="contact">Kontak</a>
         </div>
         <div>
           <h4 data-i18n="contact">Kontak</h4>
@@ -249,11 +266,13 @@
     const currentPath = window.location.pathname;
     
     document.querySelectorAll('.nav-center a, .mobile-panel a').forEach(link => {
-      const href = link.getAttribute('href');
+      // link.pathname is the browser-resolved absolute path (works no matter
+      // how the href was written), so this stays correct under any BASE.
+      const linkPath = link.pathname;
       
-      if (href === currentPath || 
-          (href !== '/' && currentPath.startsWith(href)) ||
-          (currentPath === '/' && href === '/')) {
+      if (linkPath === currentPath || 
+          (linkPath !== BASE_PATH && currentPath.startsWith(linkPath)) ||
+          (currentPath === BASE_PATH && linkPath === BASE_PATH)) {
         link.classList.add('active');
       }
     });

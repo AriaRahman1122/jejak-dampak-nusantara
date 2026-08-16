@@ -73,7 +73,7 @@
     const brandTrack = qs('#brandTrack1');
     if (!brandTrack) return;
     
-    const brands = await loadJSON('/data/brands.json');
+    const brands = await loadJSON('../data/brands.json');
     if (!brands) return;
     
     const brandHTML = brands
@@ -89,7 +89,7 @@
     if (!processGrid) return;
     
     const lang = getLang();
-    const processes = await loadJSON(`/data/csr-process-${lang}.json`);
+    const processes = await loadJSON(`../data/csr-process-${lang}.json`);
     if (!processes) return;
     
     processGrid.innerHTML = processes
@@ -109,7 +109,7 @@
     if (!processGrid) return;
     
     const lang = getLang();
-    const processes = await loadJSON(`/data/crowdfunding-process-${lang}.json`);
+    const processes = await loadJSON(`../data/crowdfunding-process-${lang}.json`);
     if (!processes) return;
     
     processGrid.innerHTML = processes
@@ -129,7 +129,7 @@
     if (!whyGrid) return;
     
     const lang = getLang();
-    const items = await loadJSON(`/data/why-jdn-${lang}.json`);
+    const items = await loadJSON(`../data/why-jdn-${lang}.json`);
     if (!items) return;
     
     whyGrid.innerHTML = items
@@ -149,7 +149,7 @@
     if (!track1 || !track2) return;
     
     const lang = getLang();
-    const data = await loadJSON(`/data/testimonials-${lang}.json`);
+    const data = await loadJSON(`../data/testimonials-${lang}.json`);
     if (!data) return;
     
     if (data.column1) {
