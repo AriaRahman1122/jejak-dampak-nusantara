@@ -33,16 +33,8 @@
         })[m],
     );
   }
-  
   async function loadJSON(url) {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`Failed to load ${url}`);
-      return await response.json();
-    } catch (error) {
-      console.error(`Error loading ${url}:`, error);
-      return null;
-    }
+    return window.JDN ? window.JDN.data(url, getLang()) : null;
   }
   
   function getLang() {
@@ -54,7 +46,7 @@
     const brandMarquees = qsa('.brand-track');
     if (!brandMarquees.length) return;
     
-    const brands = await loadJSON('data/brands.json');
+    const brands = await loadJSON('/data/brands.json');
     if (!brands) return;
     
     const brandHTML = brands
@@ -75,14 +67,14 @@
     if (!programGrid) return;
     
     const lang = getLang();
-    const programs = await loadJSON(`data/programs-${lang}.json`);
+    const programs = await loadJSON(`/data/programs-${lang}.json`);
     if (!programs) return;
     
     const featuredPrograms = programs.slice(0, 6);
     
     programGrid.innerHTML = featuredPrograms
       .map((p) => {
-        return `<a class="program-tile reveal in-view" href="program/">
+        return `<a class="program-tile reveal in-view" href="${window.JDN.url('/program/')}">
           <span>${escapeHtml(p.cat)}</span>
           <h3>${escapeHtml(p.title)}</h3>
           <p>${escapeHtml(p.summary)}</p>
@@ -97,7 +89,7 @@
     if (!newsGrid) return;
     
     const lang = getLang();
-    const news = await loadJSON(`data/news-${lang}.json`);
+    const news = await loadJSON(`/data/news-${lang}.json`);
     if (!news) return;
     
     const latestNews = news.slice(0, 3);
@@ -105,8 +97,8 @@
     
     newsGrid.innerHTML = latestNews
       .map((n) => {
-        return `<a class="news-card reveal in-view" href="berita/detail.html?slug=${encodeURIComponent(n.slug)}">
-          <img src="assets/img/${escapeHtml(n.image)}" alt="${escapeHtml(n.title)}" />
+        return `<a class="news-card reveal in-view" href="${window.JDN.url(`/berita/detail.html?slug=${encodeURIComponent(n.slug)}`)}">
+          <img src="${window.JDN.url(`/assets/img/${escapeHtml(n.image)}`)}" alt="${escapeHtml(n.title)}" />
           <div>
             <span class="meta">${escapeHtml(n.category)} · ${escapeHtml(n.views.toLocaleString('id-ID'))} ${readLabel}</span>
             <h3>${escapeHtml(n.title)}</h3>

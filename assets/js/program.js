@@ -76,24 +76,15 @@
     
     return translations[lang]?.[key] || translations.id[key] || key;
   }
-  
-  // Load JSON data
   async function loadJSON(url) {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`Failed to load ${url}`);
-      return await response.json();
-    } catch (error) {
-      console.error(`Error loading ${url}:`, error);
-      return null;
-    }
+    return window.JDN ? window.JDN.data(url, getLang()) : null;
   }
   
   // Load programs data berdasarkan bahasa
   async function loadPrograms() {
     const lang = getLang();
-    const programs = await loadJSON(`../data/programs-${lang}.json`);
-    const categories = await loadJSON(`../data/categories-${lang}.json`);
+    const programs = await loadJSON(`/data/programs-${lang}.json`);
+    const categories = await loadJSON(`/data/categories-${lang}.json`);
     
     if (!programs || !categories) return;
     
@@ -266,7 +257,7 @@
         <li>${t('scope-2')}</li>
         <li>${t('scope-3')}</li>
       </ul>
-      <a class="btn" href="../kemitraan/#form-kemitraan">${t('consult-program')}</a>
+      <a class="btn" href="${window.JDN.url('/kemitraan/#form-kemitraan')}">${t('consult-program')}</a>
     `;
     
     const modal = qs('#programModal');

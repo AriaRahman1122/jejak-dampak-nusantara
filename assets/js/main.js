@@ -10,18 +10,6 @@
 // main.js - Handle halaman beranda
 (function() {
   console.log('main.js v1.0.0 loaded');
-
-  // BASE: root URL situs, dihitung dari lokasi file ini sendiri (lihat
-  // penjelasan yang sama di components.js). main.js dimuat dari halaman di
-  // kedalaman berbeda (mis. index-back.html di root, kontak/ & masuk/ di
-  // subfolder), jadi path data/gambar tidak bisa di-hardcode.
-  const BASE = (function() {
-    const script = document.currentScript;
-    if (script && script.src) {
-      return script.src.replace(/assets\/js\/main\.js.*$/, '');
-    }
-    return '/';
-  })();
   
   // Helper functions
   function qs(s, r = document) {
@@ -48,17 +36,8 @@
   function getLang() {
     return localStorage.getItem('jdn-lang') || 'id';
   }
-  
-  // Load JSON data
   async function loadJSON(url) {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`Failed to load ${url}`);
-      return await response.json();
-    } catch (error) {
-      console.error(`Error loading ${url}:`, error);
-      return null;
-    }
+    return window.JDN ? window.JDN.data(url, getLang()) : null;
   }
   
   // Initialize reveal animations
@@ -82,33 +61,27 @@
   
   // Initialize counters
   function initCounters() {
-    const counters = qsa("[data-count]");
+    const counters = qsa('[data-count]');
     if (!counters.length) return;
-    
-    const io = new IntersectionObserver(
-      (es) =>
-        es.forEach((e) => {
-          if (!e.isIntersecting) return;
-          
-          let el = e.target,
-            target = +el.dataset.count || 0,
-            suffix = el.dataset.suffix || "",
-            start = performance.now();
-          
-          function tick(t) {
-            let p = Math.min(1, (t - start) / 1100),
-              v = Math.floor(target * (1 - Math.pow(1 - p, 3)));
-            el.textContent = v.toLocaleString("id-ID") + suffix;
-            if (p < 1) requestAnimationFrame(tick);
-          }
-          
-          requestAnimationFrame(tick);
-          io.unobserve(el);
-        }),
-      { threshold: 0.4 }
-    );
-    
-    counters.forEach((c) => io.observe(c));
+
+    const animate = (el) => {
+      const target = Number(el.dataset.count) || 0;
+      const suffix = el.dataset.suffix || '';
+      const start = performance.now();
+
+      const tick = (now) => {
+        const progress = Math.min(1, (now - start) / 1100);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.floor(target * eased);
+        el.textContent = value.toLocaleString('id-ID') + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    // Initial render does not depend on IntersectionObserver.
+    requestAnimationFrame(() => counters.forEach(animate));
+    window.addEventListener('pageshow', () => counters.forEach(animate), { once: true });
   }
   
   // Load brands
@@ -116,7 +89,7 @@
     const brandTracks = qsa('.brand-track');
     if (!brandTracks.length) return;
     
-    const brands = await loadJSON(`${BASE}data/brands.json`);
+    const brands = await loadJSON('/data/brands.json');
     if (!brands) return;
     
     const brandHTML = brands
@@ -134,14 +107,14 @@
     if (!programGrid) return;
     
     const lang = getLang();
-    const programs = await loadJSON(`${BASE}data/programs-${lang}.json`);
+    const programs = await loadJSON(`/data/programs-${lang}.json`);
     if (!programs) return;
     
     const featuredPrograms = programs.slice(0, 6);
     
     programGrid.innerHTML = featuredPrograms
       .map((p) => `
-        <a class="program-tile" href="${BASE}program/">
+        <a class="program-tile" href="${window.JDN.url('/program/')}">
           <span>${escapeHtml(p.cat)}</span>
           <h3>${escapeHtml(p.title)}</h3>
           <p>${escapeHtml(p.summary)}</p>
@@ -156,7 +129,7 @@
     if (!newsGrid) return;
     
     const lang = getLang();
-    const news = await loadJSON(`${BASE}data/news-${lang}.json`);
+    const news = await loadJSON(`/data/news-${lang}.json`);
     if (!news) return;
     
     const latestNews = news.slice(0, 3);
@@ -165,8 +138,8 @@
       .map((n) => {
         const readLabel = lang === 'en' ? 'reads' : 'dibaca';
         
-        return `<a class="news-card" href="${BASE}berita/detail.html?slug=${encodeURIComponent(n.slug)}">
-          <img src="${BASE}assets/img/${escapeHtml(n.image)}" alt="${escapeHtml(n.title)}">
+        return `<a class="news-card" href="${window.JDN.url(`/berita/detail.html?slug=${encodeURIComponent(n.slug)}`)}">
+          <img src="${window.JDN.url(`/assets/img/${escapeHtml(n.image)}`)}" alt="${escapeHtml(n.title)}">
           <div>
             <span class="meta">${escapeHtml(n.category)} · ${escapeHtml(n.views.toLocaleString('id-ID'))} ${readLabel}</span>
             <h3>${escapeHtml(n.title)}</h3>

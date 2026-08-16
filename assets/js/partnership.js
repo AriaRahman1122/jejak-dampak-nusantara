@@ -36,17 +36,8 @@
   function getLang() {
     return localStorage.getItem('jdn-lang') || 'id';
   }
-  
-  // Load JSON data
   async function loadJSON(url) {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`Failed to load ${url}`);
-      return await response.json();
-    } catch (error) {
-      console.error(`Error loading ${url}:`, error);
-      return null;
-    }
+    return window.JDN ? window.JDN.data(url, getLang()) : null;
   }
   
   // Initialize reveal animations
@@ -73,7 +64,7 @@
     const brandTrack = qs('#brandTrack1');
     if (!brandTrack) return;
     
-    const brands = await loadJSON('../data/brands.json');
+    const brands = await loadJSON('/data/brands.json');
     if (!brands) return;
     
     const brandHTML = brands
@@ -89,7 +80,7 @@
     if (!processGrid) return;
     
     const lang = getLang();
-    const processes = await loadJSON(`../data/csr-process-${lang}.json`);
+    const processes = await loadJSON('/data/csr-process.json');
     if (!processes) return;
     
     processGrid.innerHTML = processes
@@ -109,7 +100,7 @@
     if (!processGrid) return;
     
     const lang = getLang();
-    const processes = await loadJSON(`../data/crowdfunding-process-${lang}.json`);
+    const processes = await loadJSON('/data/crowdfunding-process.json');
     if (!processes) return;
     
     processGrid.innerHTML = processes
@@ -129,7 +120,7 @@
     if (!whyGrid) return;
     
     const lang = getLang();
-    const items = await loadJSON(`../data/why-jdn-${lang}.json`);
+    const items = await loadJSON('/data/why-jdn.json');
     if (!items) return;
     
     whyGrid.innerHTML = items
@@ -142,43 +133,11 @@
       .join("");
   }
   
-  // Load testimonials
-  async function loadTestimonials() {
-    const track1 = qs('#testimonialTrack1');
-    const track2 = qs('#testimonialTrack2');
-    if (!track1 || !track2) return;
-    
-    const lang = getLang();
-    const data = await loadJSON(`../data/testimonials-${lang}.json`);
-    if (!data) return;
-    
-    if (data.column1) {
-      const itemsHTML = data.column1
-        .map((item) => `
-          <article class="testimonial-card">
-            <p>"${escapeHtml(item.quote)}"</p>
-            <strong>${escapeHtml(item.name)}</strong>
-            <span>${escapeHtml(item.role)}</span>
-          </article>
-        `)
-        .join("");
-      
-      track1.innerHTML = itemsHTML + itemsHTML;
-    }
-    
-    if (data.column2) {
-      const itemsHTML = data.column2
-        .map((item) => `
-          <article class="testimonial-card">
-            <p>"${escapeHtml(item.quote)}"</p>
-            <strong>${escapeHtml(item.name)}</strong>
-            <span>${escapeHtml(item.role)}</span>
-          </article>
-        `)
-        .join("");
-      
-      track2.innerHTML = itemsHTML + itemsHTML;
-    }
+  // Testimonial placeholder data is intentionally disabled.
+  // The original JSON contains demo quotes rather than verified public testimonials.
+  function loadTestimonials() {
+    const section = qs('.testimonial-section');
+    if (section) section.hidden = true;
   }
   
   // Initialize form

@@ -56,17 +56,8 @@
     
     return translations[lang]?.[key] || translations.id[key] || key;
   }
-  
-  // Load JSON data
   async function loadJSON(url) {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`Failed to load ${url}`);
-      return await response.json();
-    } catch (error) {
-      console.error(`Error loading ${url}:`, error);
-      return null;
-    }
+    return window.JDN ? window.JDN.data(url, getLang()) : null;
   }
   
   // Get slug from URL
@@ -85,7 +76,7 @@
     }
     
     const lang = getLang();
-    const news = await loadJSON(`../data/news-${lang}.json`);
+    const news = await loadJSON(`/data/news-${lang}.json`);
     if (!news) return;
     
     const article = news.find(n => n.slug === slug);
@@ -120,7 +111,7 @@
     // Update article image
     const imageEl = qs('#articleImage');
     if (imageEl) {
-      imageEl.src = `../assets/img/${article.image}`;
+      imageEl.src = window.JDN.url(`/assets/img/${article.image}`);
       imageEl.alt = article.title;
     }
     
@@ -153,7 +144,7 @@
     if (!relatedList) return;
     
     const lang = getLang();
-    const news = await loadJSON(`../data/news-${lang}.json`);
+    const news = await loadJSON(`/data/news-${lang}.json`);
     if (!news) return;
     
     // Filter related news by same category first
@@ -168,9 +159,9 @@
     
     relatedList.innerHTML = relatedNews
       .map((news) => `
-        <a class="related-news-item" href="../berita/detail.html?slug=${encodeURIComponent(news.slug)}">
+        <a class="related-news-item" href="${window.JDN.url(`/berita/detail.html?slug=${encodeURIComponent(news.slug)}`)}">
           <div class="related-news-thumb">
-            <img src="../assets/img/${escapeHtml(news.image)}" alt="${escapeHtml(news.title)}">
+            <img src="${window.JDN.url(`/assets/img/${escapeHtml(news.image)}`)}" alt="${escapeHtml(news.title)}">
           </div>
           <div class="related-news-content">
             <span class="related-news-category">${escapeHtml(news.category)}</span>

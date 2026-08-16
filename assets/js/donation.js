@@ -63,17 +63,8 @@
     };
     return translations[lang]?.[key] || translations.id[key] || key;
   }
-  
-  // Load JSON data
   async function loadJSON(url) {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`Failed to load ${url}`);
-      return await response.json();
-    } catch (error) {
-      console.error(`Error loading ${url}:`, error);
-      return null;
-    }
+    return window.JDN ? window.JDN.data(url, getLang()) : null;
   }
   
   // Format rupiah
@@ -84,7 +75,7 @@
   // Load campaigns
   async function loadCampaigns() {
     const lang = getLang();
-    const campaigns = await loadJSON(`../data/campaigns-${lang}.json`);
+    const campaigns = await loadJSON(`/data/campaigns-${lang}.json`);
     if (!campaigns) return;
     
     allCampaigns = campaigns;
@@ -204,8 +195,8 @@
       .map((campaign) => {
         const progressPercent = Math.round((campaign.collected / campaign.target) * 100);
         
-        return `<a class="campaign-card" href="../donasi/donation-detail.html?slug=${encodeURIComponent(campaign.slug)}">
-          <img src="../assets/img/${escapeHtml(campaign.image)}" alt="${escapeHtml(campaign.title)}">
+        return `<a class="campaign-card" href="${window.JDN.url(`/donasi/donation-detail.html?slug=${encodeURIComponent(campaign.slug)}`)}">
+          <img src="${window.JDN.url(`/assets/img/${escapeHtml(campaign.image)}`)}" alt="${escapeHtml(campaign.title)}">
           <div>
             <span class="badge">${escapeHtml(campaign.category)}</span>
             <h3>${escapeHtml(campaign.title)}</h3>
@@ -241,7 +232,7 @@
       .map((campaign, index) => {
         const progressPercent = Math.round((campaign.collected / campaign.target) * 100);
         
-        return `<a class="ending-soon-item" href="../donasi/donation-detail.html?slug=${encodeURIComponent(campaign.slug)}">
+        return `<a class="ending-soon-item" href="${window.JDN.url(`/donasi/donation-detail.html?slug=${encodeURIComponent(campaign.slug)}`)}">
           <span class="ending-soon-rank">${index + 1}</span>
           <div class="ending-soon-content">
             <div class="ending-soon-title">${escapeHtml(campaign.title)}</div>
