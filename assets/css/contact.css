@@ -1,10 +1,245 @@
+/*
+  ============================================================================
+  File: contact.css
+  Deskripsi: Style khusus untuk halaman kontak
+  Author: Aria Rahman
+  Versi: 1.0.0
+  ============================================================================
+*/
 
-.contact-layout { display: grid; grid-template-columns: minmax(260px, .8fr) minmax(0, 1.2fr); gap: 28px; align-items: start; }
-.contact-card, .contact-form { padding: 32px; border: 1px solid var(--border, #e7e7e7); border-radius: 24px; background: var(--card, #fff); box-shadow: 0 16px 40px rgba(0,0,0,.06); }
-.contact-card h2 { margin: 8px 0 4px; }
-.contact-role { margin: 0 0 24px; opacity: .75; }
-.contact-details { display: grid; gap: 10px; }
-.contact-details a { color: inherit; text-decoration: none; }
-.contact-note { margin-top: 24px; padding: 14px 16px; border-radius: 14px; background: rgba(35, 145, 95, .08); font-size: .95rem; line-height: 1.6; }
-.form-status { min-height: 1.5em; margin: 12px 0 0; color: var(--text-muted, #666); }
-@media (max-width: 800px) { .contact-layout { grid-template-columns: 1fr; } .contact-card, .contact-form { padding: 24px; } }
+/* ============ PAGE HERO ============ */
+.page-hero {
+  padding: calc(var(--nav) + 60px) 0 50px;
+  background: var(--soft2);
+  text-align: left;
+}
+
+.page-hero h1 {
+  font-size: clamp(2.8rem, 6vw, 5.7rem);
+  margin-bottom: 1rem;
+  color: var(--ink);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.page-hero p {
+  font-size: clamp(1.04rem, 2vw, 1.32rem);
+  max-width: 700px;
+  color: var(--muted);
+}
+
+/* ============ CONTACT LAYOUT ============ */
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+  gap: 28px;
+  align-items: start;
+}
+
+/* ============ CONTACT CARD ============ */
+.contact-card {
+  padding: 2rem;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--paper);
+  box-shadow: 0 16px 40px rgba(13, 96, 50, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 50px rgba(13, 96, 50, 0.12);
+}
+
+.contact-card h2 {
+  margin: 8px 0 4px;
+  font-size: 1.5rem;
+  color: var(--ink);
+}
+
+.contact-role {
+  margin: 0 0 24px;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.contact-details {
+  display: grid;
+  gap: 12px;
+}
+
+.contact-details a,
+.contact-details span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: var(--soft);
+  transition: all 0.3s ease;
+  font-weight: 700;
+}
+
+.contact-details a:hover {
+  background: var(--deep);
+  color: #fff;
+  transform: translateX(4px);
+}
+
+.contact-details a::before {
+  font-size: 1.1rem;
+}
+
+.contact-details a[href^="tel"]::before {
+  content: "📞";
+}
+
+.contact-details a[href^="mailto"]::before {
+  content: "✉️";
+}
+
+.contact-details span::before {
+  content: "📍";
+}
+
+.contact-note {
+  margin-top: 24px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(118, 172, 60, 0.12);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--deep);
+  border: 1px solid rgba(118, 172, 60, 0.2);
+}
+
+/* ============ CONTACT FORM ============ */
+.contact-form {
+  padding: 2rem;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--paper);
+  box-shadow: 0 16px 40px rgba(13, 96, 50, 0.08);
+}
+
+.contact-form .section-head {
+  margin-bottom: 1.5rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 8px;
+  font-weight: 800;
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+.contact-form label > span {
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.input {
+  width: 100%;
+  min-height: 50px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 0.7rem 1rem;
+  outline: 0;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input:focus {
+  border-color: var(--main);
+  box-shadow: 0 0 0 3px rgba(118, 172, 60, 0.15);
+}
+
+textarea.input {
+  resize: vertical;
+  min-height: 120px;
+}
+
+select.input {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2366746a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.contact-form .btn {
+  width: 100%;
+  min-height: 50px;
+  font-size: 1rem;
+  margin-top: 8px;
+}
+
+.form-status {
+  min-height: 1.5em;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.form-status.success {
+  color: var(--main);
+  font-weight: 700;
+}
+
+.form-status.error {
+  color: #e74c3c;
+  font-weight: 700;
+}
+
+/* ============ DARK MODE ============ */
+[data-theme="dark"] .contact-details a,
+[data-theme="dark"] .contact-details span {
+  background: var(--soft);
+  color: var(--ink);
+}
+
+[data-theme="dark"] .contact-details a:hover {
+  background: var(--deep);
+  color: #fff;
+}
+
+[data-theme="dark"] .contact-note {
+  background: rgba(155, 226, 72, 0.1);
+  border-color: rgba(155, 226, 72, 0.2);
+  color: var(--lime);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+  .page-hero h1 {
+    font-size: 2.7rem;
+  }
+  
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-card,
+  .contact-form {
+    padding: 24px;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

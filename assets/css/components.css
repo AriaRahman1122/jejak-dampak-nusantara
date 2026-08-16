@@ -205,28 +205,79 @@
 .footer-logo {
   width: 230px;
   margin-bottom: 1rem;
+  display: block;
 }
 
 .footer-layout h4 {
   margin: 0 0 1rem;
   color: var(--deep);
+  font-size: 1.1rem;
 }
 
 .footer-layout a {
   display: block;
   margin: 0.45rem 0;
   color: var(--muted);
-  font-weight: 780;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .footer-layout a:hover {
   color: var(--deep);
 }
 
+.footer-layout p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 .footer-actions {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+/* Perbaikan: Tombol Donasi di Footer */
+.footer-actions .btn-primary,
+.footer-actions .btn {
+  background: var(--deep);
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 900;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  transition: all 0.2s ease;
+  box-shadow: 0 14px 28px rgba(13, 96, 50, 0.2);
+}
+
+.footer-actions .btn-primary:hover,
+.footer-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(13, 96, 50, 0.28);
+  background: var(--deep2);
+}
+
+.footer-actions .btn-outline {
+  background: transparent;
+  color: var(--deep);
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+
+.footer-actions .btn-outline:hover {
+  background: var(--soft);
+  color: var(--deep);
+  border-color: var(--deep);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(13, 96, 50, 0.1);
 }
 
 .footer-bottom {
@@ -238,6 +289,25 @@
   gap: 12px;
   flex-wrap: wrap;
   color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Dark mode untuk footer */
+[data-theme="dark"] .footer-actions .btn-primary,
+[data-theme="dark"] .footer-actions .btn {
+  background: var(--lime);
+  color: var(--deep2);
+}
+
+[data-theme="dark"] .footer-actions .btn-outline {
+  background: transparent;
+  color: var(--lime);
+  border-color: var(--line);
+}
+
+[data-theme="dark"] .footer-actions .btn-outline:hover {
+  background: var(--soft);
+  color: var(--lime);
 }
 
 /* ============ RESPONSIVE ============ */
@@ -304,9 +374,15 @@
 
   .footer-layout {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .footer-bottom {
     display: block;
+    text-align: center;
+  }
+  
+  .footer-actions {
+    justify-content: center;
   }
 }

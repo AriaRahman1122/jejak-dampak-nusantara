@@ -36,6 +36,7 @@
   function getLang() {
     return localStorage.getItem('jdn-lang') || 'id';
   }
+  
   async function loadJSON(url) {
     return window.JDN ? window.JDN.data(url, getLang()) : null;
   }
@@ -57,6 +58,16 @@
     );
     
     items.forEach((i) => io.observe(i));
+    
+    // Fallback: Tampilkan semua jika observer tidak bekerja
+    setTimeout(() => {
+      items.forEach((i) => {
+        const rect = i.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          i.classList.add("in-view");
+        }
+      });
+    }, 1000);
   }
   
   // Load brands
@@ -64,8 +75,8 @@
     const brandTrack = qs('#brandTrack1');
     if (!brandTrack) return;
     
-    const brands = await loadJSON('/data/brands.json');
-    if (!brands) return;
+    const brands = await loadJSON('brands');
+    if (!brands || !brands.length) return;
     
     const brandHTML = brands
       .map((brand) => `<img src="${escapeHtml(brand.logo)}" alt="${escapeHtml(brand.name)}">`)
@@ -79,9 +90,8 @@
     const processGrid = qs('#csrProcessGrid');
     if (!processGrid) return;
     
-    const lang = getLang();
-    const processes = await loadJSON('/data/csr-process.json');
-    if (!processes) return;
+    const processes = await loadJSON('csr-process');
+    if (!processes || !processes.length) return;
     
     processGrid.innerHTML = processes
       .map((process) => `
@@ -99,9 +109,8 @@
     const processGrid = qs('#crowdfundingProcessGrid');
     if (!processGrid) return;
     
-    const lang = getLang();
-    const processes = await loadJSON('/data/crowdfunding-process.json');
-    if (!processes) return;
+    const processes = await loadJSON('crowdfunding-process');
+    if (!processes || !processes.length) return;
     
     processGrid.innerHTML = processes
       .map((process) => `
@@ -119,9 +128,8 @@
     const whyGrid = qs('#whyGrid');
     if (!whyGrid) return;
     
-    const lang = getLang();
-    const items = await loadJSON('/data/why-jdn.json');
-    if (!items) return;
+    const items = await loadJSON('why-jdn');
+    if (!items || !items.length) return;
     
     whyGrid.innerHTML = items
       .map((item) => `
@@ -133,11 +141,55 @@
       .join("");
   }
   
-  // Testimonial placeholder data is intentionally disabled.
-  // The original JSON contains demo quotes rather than verified public testimonials.
-  function loadTestimonials() {
-    const section = qs('.testimonial-section');
-    if (section) section.hidden = true;
+  // Load Testimonials - DIAKTIFKAN KEMBALI
+  async function loadTestimonials() {
+    const track1 = qs('#testimonialTrack1');
+    const track2 = qs('#testimonialTrack2');
+    
+    if (!track1 || !track2) {
+      console.warn('Testimonial tracks not found');
+      return;
+    }
+    
+    const data = await loadJSON('testimonials');
+    if (!data) {
+      console.warn('No testimonials data found');
+      return;
+    }
+    
+    console.log('Testimonials data loaded:', data);
+    
+    // Load column 1
+    if (data.column1 && data.column1.length) {
+      const itemsHTML = data.column1
+        .map((item) => `
+          <article class="testimonial-card">
+            <p>"${escapeHtml(item.quote)}"</p>
+            <strong>${escapeHtml(item.name)}</strong>
+            <span>${escapeHtml(item.role)}</span>
+          </article>
+        `)
+        .join("");
+      
+      track1.innerHTML = itemsHTML + itemsHTML; // Duplicate for seamless loop
+      console.log('Column 1 loaded:', data.column1.length);
+    }
+    
+    // Load column 2
+    if (data.column2 && data.column2.length) {
+      const itemsHTML = data.column2
+        .map((item) => `
+          <article class="testimonial-card">
+            <p>"${escapeHtml(item.quote)}"</p>
+            <strong>${escapeHtml(item.name)}</strong>
+            <span>${escapeHtml(item.role)}</span>
+          </article>
+        `)
+        .join("");
+      
+      track2.innerHTML = itemsHTML + itemsHTML; // Duplicate for seamless loop
+      console.log('Column 2 loaded:', data.column2.length);
+    }
   }
   
   // Initialize form
@@ -167,7 +219,7 @@
     loadCSRProcess();
     loadCrowdfundingProcess();
     loadWhyJDN();
-    loadTestimonials();
+    loadTestimonials(); // Sekarang dipanggil
     initForm();
   }
   

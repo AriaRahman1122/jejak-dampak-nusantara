@@ -21,7 +21,7 @@
       'view-programs': 'Lihat Bank Program',
       
       // Stats Section
-      'funds-donated': 'Dana Didonasikan',
+      'funds-donated': 'Dana Terdonasi (Miliar IDR)',
       'programs-completed': 'Program Terlaksana',
       'donors': 'Donatur',
       'volunteers': 'Relawan',
@@ -71,7 +71,7 @@
       'view-programs': 'View Program Bank',
       
       // Stats Section
-      'funds-donated': 'Funds Donated',
+      'funds-donated': 'Funds Donated (Billion IDR)',
       'programs-completed': 'Programs Completed',
       'donors': 'Donors',
       'volunteers': 'Volunteers',
