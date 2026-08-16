@@ -11,7 +11,7 @@
 (function() {
   console.log('components.js v1.0.0 loaded');
   
-  // Navbar HTML
+  // Navbar HTML dengan data-nav untuk mark active
   const navbarHTML = `
     <header class="site-header" id="top">
       <div class="container nav-shell">
@@ -19,11 +19,11 @@
           <img src="${window.JDN.url('/assets/img/logo.svg')}" alt="Jejak Dampak Nusantara">
         </a>
         <nav class="nav-center" aria-label="Navigasi utama">
-          <a href="${window.JDN.url('/')}" data-i18n="nav-home">Beranda</a>
-          <a href="${window.JDN.url('/tentang/')}" data-i18n="nav-about">Tentang</a>
-          <a href="${window.JDN.url('/program/')}" data-i18n="nav-programs">Program</a>
-          <a href="${window.JDN.url('/kemitraan/')}" data-i18n="nav-partnership">Kemitraan</a>
-          <a href="${window.JDN.url('/berita/')}" data-i18n="nav-news">Berita</a>
+          <a href="${window.JDN.url('/')}" data-i18n="nav-home" data-nav="home">Beranda</a>
+          <a href="${window.JDN.url('/tentang/')}" data-i18n="nav-about" data-nav="tentang">Tentang</a>
+          <a href="${window.JDN.url('/program/')}" data-i18n="nav-programs" data-nav="program">Program</a>
+          <a href="${window.JDN.url('/kemitraan/')}" data-i18n="nav-partnership" data-nav="kemitraan">Kemitraan</a>
+          <a href="${window.JDN.url('/berita/')}" data-i18n="nav-news" data-nav="berita">Berita</a>
         </nav>
         <div class="nav-actions">
           <a class="btn btn-donate" href="${window.JDN.url('/donasi/')}" data-i18n="donate-now">Donasi Sekarang</a>
@@ -35,12 +35,12 @@
         </div>
       </div>
       <div class="mobile-panel" aria-hidden="true">
-        <a href="${window.JDN.url('/')}" data-i18n="nav-home">Beranda</a>
-        <a href="${window.JDN.url('/tentang/')}" data-i18n="nav-about">Tentang</a>
-        <a href="${window.JDN.url('/program/')}" data-i18n="nav-programs">Program</a>
-        <a href="${window.JDN.url('/kemitraan/')}" data-i18n="nav-partnership">Kemitraan</a>
-        <a href="${window.JDN.url('/berita/')}" data-i18n="nav-news">Berita</a>
-        <a href="${window.JDN.url('/donasi/')}" data-i18n="donate-now">Donasi Sekarang</a>
+        <a href="${window.JDN.url('/')}" data-i18n="nav-home" data-nav="home">Beranda</a>
+        <a href="${window.JDN.url('/tentang/')}" data-i18n="nav-about" data-nav="tentang">Tentang</a>
+        <a href="${window.JDN.url('/program/')}" data-i18n="nav-programs" data-nav="program">Program</a>
+        <a href="${window.JDN.url('/kemitraan/')}" data-i18n="nav-partnership" data-nav="kemitraan">Kemitraan</a>
+        <a href="${window.JDN.url('/berita/')}" data-i18n="nav-news" data-nav="berita">Berita</a>
+        <a href="${window.JDN.url('/donasi/')}" data-i18n="donate-now" data-nav="donasi">Donasi Sekarang</a>
       </div>
     </header>
   `;
@@ -50,10 +50,12 @@
     <footer class="site-footer">
       <div class="container footer-layout">
         <div>
-          <img class="footer-logo" src="${window.JDN.url('/assets/img/logo.svg')}" alt="Jejak Dampak Nusantara">
+          <a class="brand" href="${window.JDN.url('/')}" aria-label="Jejak Dampak Nusantara">
+            <img class="footer-logo" src="${window.JDN.url('/assets/img/logo.svg')}" alt="Jejak Dampak Nusantara">
+          </a>
           <p data-i18n="footer-desc">Yayasan Jejak Dampak Nusantara adalah jembatan kolaborasi antara donatur, perusahaan, dan masyarakat untuk pendidikan, kesehatan, dan keberlanjutan.</p>
           <div class="footer-actions">
-            <a class="btn" href="${window.JDN.url('/donasi/')}" data-i18n="donate-now">Donasi Sekarang</a>
+            <a class="btn btn-primary" href="${window.JDN.url('/donasi/')}" data-i18n="donate-now">Donasi Sekarang</a>
             <a class="btn btn-outline" href="${window.JDN.url('/kemitraan/')}" data-i18n="become-partner">Jadi Mitra</a>
           </div>
         </div>
@@ -67,7 +69,7 @@
         <div>
           <h4 data-i18n="trust">Kepercayaan</h4>
           <a href="${window.JDN.url('/#dampak')}" data-i18n="impact">Dampak</a>
-          <a href="${window.JDN.url('/#transparansi')}" data-i18n="transparency">Transparansi</a>
+          <a href="${window.JDN.url('/tentang/#transparansi')}" data-i18n="transparency">Transparansi</a>
           <a href="${window.JDN.url('/donasi/')}" data-i18n="donation-campaign">Campaign Donasi</a>
           <a href="${window.JDN.url('/kontak/')}" data-i18n="contact">Kontak</a>
         </div>
@@ -244,18 +246,36 @@
     }
   }
   
-  // Mark active navigation
+  // ============ MARK ACTIVE NAV (DIPERBAIKI) ============
   function markActiveNav() {
     const currentPath = window.location.pathname;
+    console.log('Current path:', currentPath);
     
+    // Tentukan halaman aktif berdasarkan path
+    let activePage = 'home';
+    
+    if (currentPath.includes('/tentang')) {
+      activePage = 'tentang';
+    } else if (currentPath.includes('/program')) {
+      activePage = 'program';
+    } else if (currentPath.includes('/kemitraan')) {
+      activePage = 'kemitraan';
+    } else if (currentPath.includes('/berita')) {
+      activePage = 'berita';
+    } else if (currentPath.includes('/donasi')) {
+      activePage = 'donasi';
+    }
+    
+    console.log('Active page:', activePage);
+    
+    // Hapus semua active class
     document.querySelectorAll('.nav-center a, .mobile-panel a').forEach(link => {
-      const href = link.getAttribute('href');
-      
-      if (href === currentPath || 
-          (href !== '/' && currentPath.startsWith(href)) ||
-          (currentPath === '/' && href === '/')) {
-        link.classList.add('active');
-      }
+      link.classList.remove('active');
+    });
+    
+    // Tambahkan active class ke menu yang sesuai
+    document.querySelectorAll(`[data-nav="${activePage}"]`).forEach(link => {
+      link.classList.add('active');
     });
   }
   

@@ -37,42 +37,22 @@
     return localStorage.getItem('jdn-lang') || 'id';
   }
   
-  // ============ COUNTER ANIMATION (DENGAN TRANSLASI) ============
+  // Fungsi loadJSON yang sama dengan halaman lain
+  async function loadJSON(url) {
+    return window.JDN ? window.JDN.data(url, getLang()) : null;
+  }
+  
+  // ============ COUNTER ANIMATION ============
   function initCounters() {
     const counters = qsa("[data-count]");
     console.log('Counters found:', counters.length);
     
     if (!counters.length) return;
     
-    // Fungsi untuk mendapatkan suffix berdasarkan bahasa
-    function getTranslatedSuffix(suffix, lang) {
-      if (lang === 'en') {
-        // Ganti kata Indonesia dengan Inggris
-        const translations = {
-          'Miliar': 'Billion',
-          'Juta': 'Million',
-          'Ribu': 'Thousand',
-          '+': '+',
-        };
-        
-        let translatedSuffix = suffix;
-        for (const [id, en] of Object.entries(translations)) {
-          translatedSuffix = translatedSuffix.replace(id, en);
-        }
-        return translatedSuffix;
-      }
-      return suffix;
-    }
-    
-    // Fungsi animasi untuk satu counter
     function animateCounter(el, delay) {
       const target = parseInt(el.dataset.count) || 0;
-      const originalSuffix = el.dataset.suffix || "";
-      const lang = getLang();
-      const suffix = getTranslatedSuffix(originalSuffix, lang);
-      const duration = 2000; // 2 detik
-      
-      console.log('Animating counter:', target, suffix);
+      const suffix = el.dataset.suffix || "";
+      const duration = 2000;
       
       setTimeout(() => {
         const startTime = performance.now();
@@ -80,17 +60,14 @@
         function update(currentTime) {
           const elapsed = currentTime - startTime;
           const progress = Math.min(elapsed / duration, 1);
-          
-          // Easing: easeOutCubic
           const eased = 1 - Math.pow(1 - progress, 3);
-          
           const currentValue = Math.floor(target * eased);
+          
           el.textContent = currentValue.toLocaleString("id-ID") + suffix;
           
           if (progress < 1) {
             requestAnimationFrame(update);
           } else {
-            // Pastikan nilai akhir benar
             el.textContent = target.toLocaleString("id-ID") + suffix;
           }
         }
@@ -99,24 +76,17 @@
       }, delay);
     }
     
-    // Langsung animasikan semua counter dengan delay berurutan
     counters.forEach((counter, index) => {
       animateCounter(counter, index * 200);
     });
   }
   
   // ============ LOAD BRANDS ============
-  function loadBrands() {
+  async function loadBrands() {
     const brandTracks = qsa('.brand-track');
     if (!brandTracks.length) return;
     
-    let brands = null;
-    
-    if (window.JDN_DATA && window.JDN_DATA.brands) {
-      brands = window.JDN_DATA.brands;
-    } else if (window.JDN_BRANDS) {
-      brands = window.JDN_BRANDS;
-    }
+    const brands = await loadJSON('/data/brands.json');
     
     if (!brands || !brands.length) {
       console.warn('No brands data found');
@@ -135,27 +105,20 @@
   }
   
   // ============ LOAD FEATURED PROGRAMS ============
-  function loadFeaturedPrograms() {
+  async function loadFeaturedPrograms() {
     const programGrid = qs('#homeProgramGrid');
-    if (!programGrid) return;
+    if (!programGrid) {
+      console.warn('Program grid element not found');
+      return;
+    }
     
     const lang = getLang();
     
-    let programs = null;
+    // Gunakan loadJSON seperti halaman lain
+    const programs = await loadJSON(`/data/programs-${lang}.json`);
     
-    if (lang === 'id') {
-      if (window.JDN_DATA && window.JDN_DATA.programs_id) {
-        programs = window.JDN_DATA.programs_id;
-      } else if (window.JDN_PROGRAMS_ID) {
-        programs = window.JDN_PROGRAMS_ID;
-      }
-    } else {
-      if (window.JDN_DATA && window.JDN_DATA.programs_en) {
-        programs = window.JDN_DATA.programs_en;
-      } else if (window.JDN_PROGRAMS_EN) {
-        programs = window.JDN_PROGRAMS_EN;
-      }
-    }
+    console.log('Loading programs for lang:', lang);
+    console.log('Programs data:', programs ? programs.length + ' items' : 'null');
     
     if (!programs || !programs.length) {
       console.warn('No programs data found for lang:', lang);
@@ -165,41 +128,40 @@
     const featuredPrograms = programs.slice(0, 6);
     
     programGrid.innerHTML = featuredPrograms
-      .map((p) => `
-        <a class="program-tile reveal in-view" href="program/">
-          <span>${escapeHtml(p.cat)}</span>
-          <h3>${escapeHtml(p.title)}</h3>
-          <p>${escapeHtml(p.summary)}</p>
-        </a>
-      `)
+      .map((p) => {
+        const title = p.title || '';
+        const summary = p.summary || p.excerpt || '';
+        const cat = p.cat || p.category || '';
+        
+        return `
+          <a class="program-tile reveal in-view" href="${window.JDN.url('/program/')}">
+            <span>${escapeHtml(cat)}</span>
+            <h3>${escapeHtml(title)}</h3>
+            <p>${escapeHtml(summary)}</p>
+          </a>
+        `;
+      })
       .join("");
     
     console.log('Featured programs loaded:', featuredPrograms.length);
   }
   
   // ============ LOAD LATEST NEWS ============
-  function loadLatestNews() {
+  async function loadLatestNews() {
     const newsGrid = qs('#homeNewsGrid');
-    if (!newsGrid) return;
+    if (!newsGrid) {
+      console.warn('News grid element not found');
+      return;
+    }
     
     const lang = getLang();
     const readLabel = lang === 'en' ? 'reads' : 'dibaca';
     
-    let news = null;
+    // Gunakan loadJSON seperti halaman lain
+    const news = await loadJSON(`/data/news-${lang}.json`);
     
-    if (lang === 'id') {
-      if (window.JDN_DATA && window.JDN_DATA.news_id) {
-        news = window.JDN_DATA.news_id;
-      } else if (window.JDN_NEWS_ID) {
-        news = window.JDN_NEWS_ID;
-      }
-    } else {
-      if (window.JDN_DATA && window.JDN_DATA.news_en) {
-        news = window.JDN_DATA.news_en;
-      } else if (window.JDN_NEWS_EN) {
-        news = window.JDN_NEWS_EN;
-      }
-    }
+    console.log('Loading news for lang:', lang);
+    console.log('News data:', news ? news.length + ' items' : 'null');
     
     if (!news || !news.length) {
       console.warn('No news data found for lang:', lang);
@@ -209,16 +171,25 @@
     const latestNews = news.slice(0, 3);
     
     newsGrid.innerHTML = latestNews
-      .map((n) => `
-        <a class="news-card reveal in-view" href="berita/detail.html?slug=${encodeURIComponent(n.slug)}">
-          <img src="assets/img/${escapeHtml(n.image)}" alt="${escapeHtml(n.title)}">
-          <div>
-            <span class="meta">${escapeHtml(n.category)} · ${n.views.toLocaleString('id-ID')} ${readLabel}</span>
-            <h3>${escapeHtml(n.title)}</h3>
-            <p>${escapeHtml(n.excerpt)}</p>
-          </div>
-        </a>
-      `)
+      .map((n) => {
+        const title = n.title || '';
+        const excerpt = n.excerpt || '';
+        const category = n.category || '';
+        const views = n.views || 0;
+        const image = n.image || '';
+        const slug = n.slug || '';
+        
+        return `
+          <a class="news-card reveal in-view" href="${window.JDN.url(`/berita/detail.html?slug=${encodeURIComponent(slug)}`)}">
+            <img src="${window.JDN.url(`/assets/img/${image}`)}" alt="${escapeHtml(title)}">
+            <div>
+              <span class="meta">${escapeHtml(category)} · ${views.toLocaleString('id-ID')} ${readLabel}</span>
+              <h3>${escapeHtml(title)}</h3>
+              <p>${escapeHtml(excerpt)}</p>
+            </div>
+          </a>
+        `;
+      })
       .join("");
     
     console.log('Latest news loaded:', latestNews.length);
@@ -226,9 +197,7 @@
   
   // ============ UPDATE CONTENT WHEN LANGUAGE CHANGES ============
   function updateContent() {
-    // Re-animate counters dengan bahasa baru
     initCounters();
-    
     loadFeaturedPrograms();
     loadLatestNews();
   }
@@ -237,10 +206,7 @@
   function init() {
     console.log('Initializing home.js');
     
-    // Jalankan counter langsung
     initCounters();
-    
-    // Load data
     loadBrands();
     loadFeaturedPrograms();
     loadLatestNews();
