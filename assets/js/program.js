@@ -1,333 +1,630 @@
 /*
   ============================================================================
   File: program.js
-  Deskripsi: Fungsi untuk halaman program (filter, search, modal)
+  Deskripsi: Fungsi untuk halaman program (filter, pencarian, dan modal)
   Author: Aria Rahman
-  Versi: 1.0.0
+  Versi: 1.1.0
   ============================================================================
 */
 
-// program.js - Handle halaman program
-(function() {
-  console.log('program.js v1.0.0 loaded');
-  
-  // State
+(function () {
+  "use strict";
+
+  console.log("program.js v1.1.0 loaded");
+
   let allPrograms = [];
   let selectedCategories = [];
-  
-  // Helper functions
-  function qs(s, r = document) {
-    return r.querySelector(s);
+  let selectedProvince = "all";
+  let lastFocusedElement = null;
+
+  function qs(selector, root = document) {
+    return root.querySelector(selector);
   }
-  
-  function qsa(s, r = document) {
-    return [...r.querySelectorAll(s)];
+
+  function qsa(selector, root = document) {
+    return [...root.querySelectorAll(selector)];
   }
-  
-  function escapeHtml(s) {
-    return String(s || "").replace(
+
+  function escapeHtml(value) {
+    return String(value ?? "").replace(
       /[&<>'"]/g,
-      (m) => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        "'": "&#39;",
-        '"': "&quot;",
-      })[m]
+      (character) =>
+        ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          "'": "&#39;",
+          '"': "&quot;",
+        })[character],
     );
   }
-  
+
   function getLang() {
-    return localStorage.getItem('jdn-lang') || 'id';
+    return (
+      localStorage.getItem("jdn-lang") ||
+      document.documentElement.getAttribute("lang") ||
+      "id"
+    );
   }
-  
+
   function t(key) {
-    const lang = getLang();
     const translations = {
       id: {
-        'select-all': 'Pilih Semua',
-        'all-provinces': 'Semua Provinsi',
-        'detail': 'Detail',
-        'region': 'Wilayah',
-        'beneficiaries': 'Penerima',
-        'program-scope': 'Ruang lingkup program',
-        'scope-1': 'Needs assessment dan validasi penerima manfaat.',
-        'scope-2': 'Desain aktivitas, indikator, dan timeline implementasi.',
-        'scope-3': 'Dokumentasi lapangan dan laporan dampak.',
-        'consult-program': 'Konsultasikan Program',
-        'no-results-title': 'Program tidak ditemukan',
-        'no-results-desc': 'Coba ubah kategori, provinsi, atau kata kunci pencarian.'
+        all: "Semua",
+        "select-all": "Pilih Semua",
+        category: "Kategori",
+        province: "Provinsi",
+        "all-provinces": "Semua Provinsi",
+        detail: "Detail",
+        region: "Wilayah",
+        beneficiaries: "Penerima",
+        "program-scope": "Ruang lingkup program",
+        "scope-1": "Asesmen kebutuhan dan validasi penerima manfaat.",
+        "scope-2": "Desain aktivitas, indikator, dan jadwal implementasi.",
+        "scope-3": "Dokumentasi lapangan dan laporan dampak.",
+        "consult-program": "Konsultasikan Program",
+        "no-results-title": "Program tidak ditemukan",
+        "no-results-desc":
+          "Coba ubah kategori, provinsi, atau kata kunci pencarian.",
+        "close-modal": "Tutup detail program",
       },
       en: {
-        'select-all': 'Select All',
-        'all-provinces': 'All Provinces',
-        'detail': 'Detail',
-        'region': 'Region',
-        'beneficiaries': 'Beneficiaries',
-        'program-scope': 'Program scope',
-        'scope-1': 'Needs assessment and beneficiary validation.',
-        'scope-2': 'Activity design, indicators, and implementation timeline.',
-        'scope-3': 'Field documentation and impact reports.',
-        'consult-program': 'Consult Program',
-        'no-results-title': 'Program not found',
-        'no-results-desc': 'Try changing categories, provinces, or search keywords.'
-      }
+        all: "All",
+        "select-all": "Select All",
+        category: "Category",
+        province: "Province",
+        "all-provinces": "All Provinces",
+        detail: "Details",
+        region: "Region",
+        beneficiaries: "Beneficiaries",
+        "program-scope": "Program scope",
+        "scope-1": "Needs assessment and beneficiary validation.",
+        "scope-2": "Activity design, indicators, and implementation timeline.",
+        "scope-3": "Field documentation and impact reports.",
+        "consult-program": "Discuss This Program",
+        "no-results-title": "No programs found",
+        "no-results-desc":
+          "Try changing the category, province, or search keywords.",
+        "close-modal": "Close program details",
+      },
     };
-    
-    return translations[lang]?.[key] || translations.id[key] || key;
+
+    const lang = getLang();
+
+    return translations[lang]?.[key] ?? translations.id[key] ?? key;
   }
+
   async function loadJSON(url) {
     return window.JDN ? window.JDN.data(url, getLang()) : null;
   }
-  
-  // Load programs data berdasarkan bahasa
+
   async function loadPrograms() {
     const lang = getLang();
-    const programs = await loadJSON(`/data/programs-${lang}.json`);
-    const categories = await loadJSON(`/data/categories-${lang}.json`);
-    
-    if (!programs || !categories) return;
-    
+
+    const [programs, categories] = await Promise.all([
+      loadJSON(`/data/programs-${lang}.json`),
+      loadJSON(`/data/categories-${lang}.json`),
+    ]);
+
+    if (!Array.isArray(programs) || !Array.isArray(categories)) {
+      console.error("Data program atau kategori tidak tersedia.");
+      return;
+    }
+
     allPrograms = programs;
-    
+    selectedCategories = [];
+    selectedProvince = "all";
+
+    syncStaticLabels();
     renderCategories(categories);
     renderProvinces();
     renderPrograms();
   }
-  
-  // Render category filters
+
+  function syncStaticLabels() {
+    const categoryLabel = qs("[data-category-label]");
+    const provinceLabel = qs("[data-province-label]");
+    const closeModalButton = qs(".modal-close");
+
+    if (categoryLabel) {
+      categoryLabel.textContent = t("category");
+    }
+
+    if (provinceLabel) {
+      provinceLabel.textContent = t("province");
+    }
+
+    if (closeModalButton) {
+      closeModalButton.setAttribute("aria-label", t("close-modal"));
+    }
+  }
+
   function renderCategories(categories) {
-    const categoryPanel = qs('[data-category-panel]');
-    if (!categoryPanel) return;
-    
+    const categoryPanel = qs("[data-category-panel]");
+
+    if (!categoryPanel) {
+      return;
+    }
+
     categoryPanel.innerHTML = `
       <label class="select-all-row">
-        <input type="checkbox" id="selectAllCategories">
-        <span>${t('select-all')}</span>
+        <input type="checkbox" data-select-all-categories>
+        <span>${escapeHtml(t("select-all"))}</span>
       </label>
+
       ${categories
         .map(
-          (c) =>
-            `<label class="check-row"><input type="checkbox" value="${escapeHtml(c)}"><span>${escapeHtml(c)}</span></label>`,
+          (category) => `
+            <label class="check-row">
+              <input
+                type="checkbox"
+                value="${escapeHtml(category)}"
+                ${selectedCategories.includes(category) ? "checked" : ""}
+              >
+              <span>${escapeHtml(category)}</span>
+            </label>
+          `,
         )
         .join("")}
     `;
-    
-    const selectAllCheckbox = qs('#selectAllCategories', categoryPanel);
-    const categoryCheckboxes = qsa('.check-row input[type="checkbox"]', categoryPanel);
-    
+
+    const selectAllCheckbox = qs(
+      "[data-select-all-categories]",
+      categoryPanel,
+    );
+
+    const categoryCheckboxes = qsa(
+      '.check-row input[type="checkbox"]',
+      categoryPanel,
+    );
+
     if (selectAllCheckbox) {
-      selectAllCheckbox.addEventListener('change', () => {
+      selectAllCheckbox.checked =
+        categoryCheckboxes.length > 0 &&
+        selectedCategories.length === categoryCheckboxes.length;
+
+      selectAllCheckbox.addEventListener("change", () => {
         const isChecked = selectAllCheckbox.checked;
-        categoryCheckboxes.forEach(checkbox => {
+
+        categoryCheckboxes.forEach((checkbox) => {
           checkbox.checked = isChecked;
         });
-        selectedCategories = isChecked ? categoryCheckboxes.map(cb => cb.value) : [];
+
+        selectedCategories = isChecked
+          ? categoryCheckboxes.map((checkbox) => checkbox.value)
+          : [];
+
         renderPrograms();
       });
     }
-    
-    categoryCheckboxes.forEach(checkbox => {
-      checkbox.addEventListener('change', () => {
-        selectedCategories = qsa('.check-row input:checked', categoryPanel).map(i => i.value);
+
+    categoryCheckboxes.forEach((checkbox) => {
+      checkbox.addEventListener("change", () => {
+        selectedCategories = qsa(
+          '.check-row input[type="checkbox"]:checked',
+          categoryPanel,
+        ).map((input) => input.value);
+
         if (selectAllCheckbox) {
-          selectAllCheckbox.checked = selectedCategories.length === categoryCheckboxes.length;
+          selectAllCheckbox.checked =
+            selectedCategories.length === categoryCheckboxes.length;
+
+          selectAllCheckbox.indeterminate =
+            selectedCategories.length > 0 &&
+            selectedCategories.length < categoryCheckboxes.length;
         }
+
         renderPrograms();
       });
     });
   }
-  
-  // Render provinces
+
   function renderProvinces() {
-    const provinceFilter = qs('#provinceFilter');
-    if (!provinceFilter) return;
-    
-    const provinces = [...new Set(allPrograms.map(p => p.province))].sort();
-    
-    provinceFilter.innerHTML = `
-      <option value="all">${t('all-provinces')}</option>
-      ${provinces.map(p => `<option value="${escapeHtml(p)}">${escapeHtml(p)}</option>`).join("")}
-    `;
-    
-    provinceFilter.addEventListener('change', renderPrograms);
+    const provincePanel = qs("[data-province-panel]");
+
+    if (!provincePanel) {
+      return;
+    }
+
+    const provinces = [
+      ...new Set(allPrograms.map((program) => program.province)),
+    ]
+      .filter(Boolean)
+      .sort((firstProvince, secondProvince) =>
+        firstProvince.localeCompare(secondProvince, getLang()),
+      );
+
+    const provinceOptions = [
+      {
+        value: "all",
+        label: t("all-provinces"),
+      },
+      ...provinces.map((province) => ({
+        value: province,
+        label: province,
+      })),
+    ];
+
+    provincePanel.innerHTML = provinceOptions
+      .map(
+        ({ value, label }) => `
+          <label
+            class="province-option${
+              selectedProvince === value ? " active" : ""
+            }"
+          >
+            <input
+              type="radio"
+              name="province-filter"
+              value="${escapeHtml(value)}"
+              ${selectedProvince === value ? "checked" : ""}
+            >
+
+            <span
+              class="province-radio-mark"
+              aria-hidden="true"
+            ></span>
+
+            <span class="province-option-label">
+              ${escapeHtml(label)}
+            </span>
+          </label>
+        `,
+      )
+      .join("");
+
+    qsa('input[name="province-filter"]', provincePanel).forEach((input) => {
+      input.addEventListener("change", () => {
+        selectedProvince = input.value;
+
+        renderProvinces();
+        renderPrograms();
+        closeDropdown(qs("[data-province-dropdown]"));
+      });
+    });
   }
-  
-  // Render programs
+
   function renderPrograms() {
-    const programGrid = qs('#programGrid');
-    const programCount = qs('[data-program-count]');
-    const categoryCount = qs('[data-category-count]');
-    const selectedFilters = qs('[data-selected-filters]');
-    
-    if (!programGrid) return;
-    
-    const searchInput = qs('#programSearch');
-    const provinceFilter = qs('#provinceFilter');
-    
-    const searchValue = searchInput ? searchInput.value.toLowerCase() : '';
-    const provinceValue = provinceFilter ? provinceFilter.value : 'all';
-    
-    const filteredPrograms = allPrograms.filter(p => {
-      const text = `${p.title} ${p.summary} ${p.cat} ${p.sdg} ${p.province} ${p.city}`.toLowerCase();
-      
-      const matchesSearch = !searchValue || text.includes(searchValue);
-      const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(p.cat);
-      const matchesProvince = provinceValue === 'all' || p.province === provinceValue;
-      
+    const programGrid = qs("#programGrid");
+    const programCount = qs("[data-program-count]");
+    const categoryCount = qs("[data-category-count]");
+    const provinceValueLabel = qs("[data-province-value]");
+    const selectedFilters = qs("[data-selected-filters]");
+    const searchInput = qs("#programSearch");
+
+    if (!programGrid) {
+      return;
+    }
+
+    const searchValue =
+      searchInput?.value.trim().toLocaleLowerCase(getLang()) ?? "";
+
+    const filteredPrograms = allPrograms.filter((program) => {
+      const searchableText = [
+        program.title,
+        program.summary,
+        program.cat,
+        program.sdg,
+        program.province,
+        program.city,
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLocaleLowerCase(getLang());
+
+      const matchesSearch =
+        searchValue.length === 0 || searchableText.includes(searchValue);
+
+      const matchesCategory =
+        selectedCategories.length === 0 ||
+        selectedCategories.includes(program.cat);
+
+      const matchesProvince =
+        selectedProvince === "all" ||
+        program.province === selectedProvince;
+
       return matchesSearch && matchesCategory && matchesProvince;
     });
-    
+
     if (programCount) {
       programCount.textContent = filteredPrograms.length;
     }
-    
+
     if (categoryCount) {
-      categoryCount.textContent = selectedCategories.length === 0 
-        ? t('all') 
-        : selectedCategories.length;
+      categoryCount.textContent =
+        selectedCategories.length === 0
+          ? t("all")
+          : String(selectedCategories.length);
     }
-    
+
+    if (provinceValueLabel) {
+      provinceValueLabel.textContent =
+        selectedProvince === "all"
+          ? t("all")
+          : selectedProvince;
+    }
+
     if (selectedFilters) {
-      selectedFilters.innerHTML = selectedCategories
-        .map(c => `<span>${escapeHtml(c)}</span>`)
+      const activeFilters = [...selectedCategories];
+
+      if (selectedProvince !== "all") {
+        activeFilters.push(selectedProvince);
+      }
+
+      selectedFilters.innerHTML = activeFilters
+        .map((filter) => `<span>${escapeHtml(filter)}</span>`)
         .join("");
     }
-    
+
     if (filteredPrograms.length === 0) {
       programGrid.innerHTML = `
-        <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: var(--soft); border-radius: 20px;">
-          <h3>${t('no-results-title')}</h3>
-          <p>${t('no-results-desc')}</p>
+        <div class="no-results">
+          <h3>${escapeHtml(t("no-results-title"))}</h3>
+          <p>${escapeHtml(t("no-results-desc"))}</p>
         </div>
       `;
+
       return;
     }
-    
+
     programGrid.innerHTML = filteredPrograms
-      .map(p => `
-        <article class="program-card" data-id="${escapeHtml(p.id)}">
-          <div class="meta">
-            <span class="tag">${escapeHtml(p.cat)}</span>
-            <span class="tag">${escapeHtml(p.sdg)}</span>
-            <span class="tag">${escapeHtml(p.province)}</span>
-          </div>
-          <h3>${escapeHtml(p.title)}</h3>
-          <p>${escapeHtml(p.summary)}</p>
-          <div class="program-bottom">
-            <strong>${escapeHtml(p.budget)}</strong>
-            <button class="btn btn-outline" type="button">${t('detail')}</button>
-          </div>
-        </article>
-      `)
+      .map(
+        (program) => `
+          <article
+            class="program-card"
+            data-id="${escapeHtml(program.id)}"
+            tabindex="0"
+            role="button"
+            aria-label="${escapeHtml(
+              `${t("detail")}: ${program.title}`,
+            )}"
+          >
+            <div class="meta">
+              <span class="tag">
+                ${escapeHtml(program.cat)}
+              </span>
+
+              <span class="tag">
+                ${escapeHtml(program.sdg)}
+              </span>
+
+              <span class="tag">
+                ${escapeHtml(program.province)}
+              </span>
+            </div>
+
+            <h3>${escapeHtml(program.title)}</h3>
+
+            <p>${escapeHtml(program.summary)}</p>
+
+            <div class="program-bottom">
+              <strong>${escapeHtml(program.budget)}</strong>
+
+              <span
+                class="btn btn-outline"
+                aria-hidden="true"
+              >
+                ${escapeHtml(t("detail"))}
+              </span>
+            </div>
+          </article>
+        `,
+      )
       .join("");
-    
-    qsa('.program-card', programGrid).forEach(card => {
-      card.addEventListener('click', () => openProgram(card.dataset.id));
-    });
-  }
-  
-  // Open program modal
-  function openProgram(id) {
-    const p = allPrograms.find(x => x.id === id);
-    if (!p) return;
-    
-    const modalContent = qs('#programModalContent');
-    if (!modalContent) return;
-    
-    modalContent.innerHTML = `
-      <span class="badge">${escapeHtml(p.cat)}</span>
-      <h2>${escapeHtml(p.title)}</h2>
-      <p>${escapeHtml(p.summary)}</p>
-      <div class="trust-grid" style="grid-template-columns:repeat(2,1fr);margin:18px 0">
-        <div class="mini-card">
-          <b>${t('region')}</b>
-          <h3>${escapeHtml(p.city)}</h3>
-          <p>${escapeHtml(p.province)}</p>
-        </div>
-        <div class="mini-card">
-          <b>${t('beneficiaries')}</b>
-          <h3>${escapeHtml(p.beneficiaries)}</h3>
-          <p>${escapeHtml(p.budget)}</p>
-        </div>
-      </div>
-      <h3>${t('program-scope')}</h3>
-      <ul>
-        <li>${t('scope-1')}</li>
-        <li>${t('scope-2')}</li>
-        <li>${t('scope-3')}</li>
-      </ul>
-      <a class="btn" href="${window.JDN.url('/kemitraan/#form-kemitraan')}">${t('consult-program')}</a>
-    `;
-    
-    const modal = qs('#programModal');
-    if (modal) {
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden', 'false');
-    }
-  }
-  
-  // Initialize search
-  function initSearch() {
-    const searchInput = qs('#programSearch');
-    if (!searchInput) return;
-    
-    searchInput.addEventListener('input', renderPrograms);
-  }
-  
-  // Initialize filter dropdown
-  function initFilterDropdown() {
-    const dropdown = qs('[data-filter-dropdown]');
-    if (!dropdown) return;
-    
-    const filterButton = qs('.filter-button', dropdown);
-    
-    if (filterButton) {
-      filterButton.addEventListener('click', () => {
-        dropdown.classList.toggle('open');
+
+    qsa(".program-card", programGrid).forEach((card) => {
+      card.addEventListener("click", () => {
+        openProgram(card.dataset.id);
       });
-    }
-    
-    document.addEventListener('click', (e) => {
-      if (!dropdown.contains(e.target)) {
-        dropdown.classList.remove('open');
-      }
-    });
-  }
-  
-  // Initialize modal close
-  function initModalClose() {
-    qsa('[data-close-modal]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const modal = qs('#programModal');
-        if (modal) {
-          modal.classList.remove('open');
-          modal.setAttribute('aria-hidden', 'true');
+
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openProgram(card.dataset.id);
         }
       });
     });
   }
-  
-  // Update content when language changes
+
+  function openProgram(id) {
+    const program = allPrograms.find((item) => item.id === id);
+    const modal = qs("#programModal");
+    const modalContent = qs("#programModalContent");
+    const modalCard = modal
+      ? qs(".modal-card", modal)
+      : null;
+
+    if (!program || !modal || !modalContent || !modalCard) {
+      return;
+    }
+
+    modalContent.innerHTML = `
+      <span class="badge">
+        ${escapeHtml(program.cat)}
+      </span>
+
+      <h2 id="programModalTitle">
+        ${escapeHtml(program.title)}
+      </h2>
+
+      <p>${escapeHtml(program.summary)}</p>
+
+      <div class="trust-grid program-modal-grid">
+        <div class="mini-card">
+          <b>${escapeHtml(t("region"))}</b>
+          <h3>${escapeHtml(program.city)}</h3>
+          <p>${escapeHtml(program.province)}</p>
+        </div>
+
+        <div class="mini-card">
+          <b>${escapeHtml(t("beneficiaries"))}</b>
+          <h3>${escapeHtml(program.beneficiaries)}</h3>
+          <p>${escapeHtml(program.budget)}</p>
+        </div>
+      </div>
+
+      <h3>${escapeHtml(t("program-scope"))}</h3>
+
+      <ul>
+        <li>${escapeHtml(t("scope-1"))}</li>
+        <li>${escapeHtml(t("scope-2"))}</li>
+        <li>${escapeHtml(t("scope-3"))}</li>
+      </ul>
+
+      <a
+        class="btn"
+        href="${window.JDN.url("/kemitraan/#form-kemitraan")}"
+      >
+        ${escapeHtml(t("consult-program"))}
+      </a>
+    `;
+
+    lastFocusedElement = document.activeElement;
+
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+
+    modalCard.setAttribute("tabindex", "-1");
+    modalCard.focus();
+  }
+
+  function closeModal() {
+    const modal = qs("#programModal");
+
+    if (!modal?.classList.contains("open")) {
+      return;
+    }
+
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+
+    if (lastFocusedElement instanceof HTMLElement) {
+      lastFocusedElement.focus();
+    }
+  }
+
+  function closeDropdown(dropdown) {
+    if (!dropdown) {
+      return;
+    }
+
+    dropdown.classList.remove("open");
+
+    const button = qs(".filter-button", dropdown);
+
+    if (button) {
+      button.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  function closeAllDropdowns(exception = null) {
+    qsa(".filter-dropdown").forEach((dropdown) => {
+      if (dropdown !== exception) {
+        closeDropdown(dropdown);
+      }
+    });
+  }
+
+  function initSearch() {
+    const searchInput = qs("#programSearch");
+
+    if (!searchInput) {
+      return;
+    }
+
+    searchInput.addEventListener("input", renderPrograms);
+  }
+
+  function initFilterDropdowns() {
+    qsa(".filter-dropdown").forEach((dropdown) => {
+      const button = qs(".filter-button", dropdown);
+
+      if (!button) {
+        return;
+      }
+
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+
+        const shouldOpen =
+          !dropdown.classList.contains("open");
+
+        closeAllDropdowns(dropdown);
+
+        dropdown.classList.toggle("open", shouldOpen);
+        button.setAttribute(
+          "aria-expanded",
+          String(shouldOpen),
+        );
+      });
+
+      const panel = qs(".filter-panel", dropdown);
+
+      if (panel) {
+        panel.addEventListener("click", (event) => {
+          event.stopPropagation();
+        });
+      }
+    });
+
+    document.addEventListener("click", () => {
+      closeAllDropdowns();
+    });
+  }
+
+  function initModal() {
+    qsa("[data-close-modal]").forEach((element) => {
+      element.addEventListener("click", closeModal);
+    });
+  }
+
+  function handleGlobalKeydown(event) {
+    if (event.key !== "Escape") {
+      return;
+    }
+
+    if (qs("#programModal")?.classList.contains("open")) {
+      closeModal();
+      return;
+    }
+
+    closeAllDropdowns();
+  }
+
   function updateContent() {
+    closeAllDropdowns();
+    closeModal();
     loadPrograms();
   }
-  
-  // Initialize
+
   function init() {
-    console.log('Initializing program.js');
-    loadPrograms();
+    console.log("Initializing program.js");
+
     initSearch();
-    initFilterDropdown();
-    initModalClose();
+    initFilterDropdowns();
+    initModal();
+
+    document.addEventListener(
+      "keydown",
+      handleGlobalKeydown,
+    );
+
+    loadPrograms();
   }
-  
-  // Listen for language changes
-  document.addEventListener('language-changed', updateContent);
-  
-  // Initialize on DOM ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+
+  document.addEventListener(
+    "language-changed",
+    updateContent,
+  );
+
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      init,
+      { once: true },
+    );
   } else {
     init();
   }

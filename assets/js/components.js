@@ -75,7 +75,7 @@
         </div>
         <div>
           <h4 data-i18n="contact">Kontak</h4>
-          <p>Asep Nugraha - Founder & CEO<br>087735524614<br>asepnugraha@jejakdampak.org<br>Bandung, Jawa Barat</p>
+          <p>Yayasan Jejak Dampak Nusantara<br>info@jejakdampak.org<br>Bandung, Jawa Barat</p>
         </div>
       </div>
       <div class="container footer-bottom">

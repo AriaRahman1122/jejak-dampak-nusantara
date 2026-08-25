@@ -58,7 +58,7 @@
       const subject = `[Kontak JDN] ${topic} - ${name}`;
       const body = `Nama: ${name}\nEmail: ${email}\nWhatsApp: ${phone}\nTopik: ${topic}\n\nPesan:\n${message}`;
       
-      const mailtoLink = `mailto:asepnugraha@jejakdampak.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const mailtoLink = `mailto:info@jejakdampak.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       
       // Buka email client
       window.location.href = mailtoLink;

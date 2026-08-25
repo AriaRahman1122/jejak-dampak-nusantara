@@ -3,7 +3,7 @@
   File: index.html
   Deskripsi: Halaman program Jejak Dampak Nusantara
   Author: Aria Rahman
-  Versi: 1.0.0
+  Versi: 1.1.0
   ============================================================================
 -->
 <!doctype html>
@@ -12,24 +12,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Program | Jejak Dampak Nusantara</title>
-  <meta name="description" content="Bank Program Jejak Dampak Nusantara">
+  <meta name="description" content="Temukan program sosial Jejak Dampak Nusantara berdasarkan kategori dan wilayah.">
   <link rel="icon" href="../assets/img/logo-mark.svg" type="image/svg+xml">
-  
+
   <script>
-    (function() {
-      const savedTheme = localStorage.getItem('jdn-theme');
-      const savedLang = localStorage.getItem('jdn-lang');
-      
+    (function () {
+      const savedTheme = localStorage.getItem("jdn-theme");
+      const savedLang = localStorage.getItem("jdn-lang");
+
       if (savedTheme) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
+        document.documentElement.setAttribute("data-theme", savedTheme);
       }
-      
+
       if (savedLang) {
-        document.documentElement.setAttribute('lang', savedLang);
+        document.documentElement.setAttribute("lang", savedLang);
       }
     })();
   </script>
-  
+
   <link rel="stylesheet" href="../assets/css/global.css">
   <link rel="stylesheet" href="../assets/css/components.css">
   <link rel="stylesheet" href="../assets/css/program.css">
@@ -44,47 +44,99 @@
       <div class="container">
         <span class="eyebrow green" data-i18n="hero-eyebrow">Bank Program</span>
         <h1 data-i18n="hero-title">Temukan program berdasarkan kategori dan wilayah.</h1>
-        <p data-i18n="hero-desc">Gunakan search, pilih beberapa kategori, lalu filter provinsi untuk menemukan program yang paling sesuai.</p>
+        <p data-i18n="hero-desc">
+          Gunakan pencarian, pilih beberapa kategori, lalu tentukan provinsi untuk
+          menemukan program yang paling sesuai.
+        </p>
       </div>
     </section>
 
-    <section class="section program-section">
+    <section class="section program-section" aria-labelledby="program-result-title">
       <div class="container">
-        <div class="program-toolbar">
+        <div class="program-toolbar" aria-label="Filter program">
           <div class="search-wrap">
+            <label class="sr-only" for="programSearch">Cari program</label>
             <input
               type="search"
               id="programSearch"
               placeholder="Cari program, kategori, SDGs, provinsi..."
               data-i18n-placeholder="search-placeholder"
-            />
+              autocomplete="off"
+            >
           </div>
-          <div class="filter-dropdown" data-filter-dropdown>
-            <button type="button" class="btn btn-outline filter-button">
-              <span data-i18n="category-label">Kategori</span> <span data-category-count>Semua</span>
+
+          <div class="filter-dropdown" data-category-dropdown>
+            <button
+              type="button"
+              class="filter-button"
+              data-category-button
+              aria-expanded="false"
+              aria-controls="categoryFilterPanel"
+            >
+              <span class="filter-button-label" data-category-label>Kategori</span>
+              <span class="filter-button-value" data-category-count>Semua</span>
             </button>
-            <div class="filter-panel" data-category-panel></div>
+
+            <div
+              class="filter-panel category-filter-panel"
+              id="categoryFilterPanel"
+              data-category-panel
+              aria-label="Pilihan kategori"
+            ></div>
           </div>
-          <select id="provinceFilter">
-            <option value="all" data-i18n="all-provinces">Semua Provinsi</option>
-          </select>
+
+          <div class="filter-dropdown" data-province-dropdown>
+            <button
+              type="button"
+              class="filter-button"
+              data-province-button
+              aria-expanded="false"
+              aria-controls="provinceFilterPanel"
+            >
+              <span class="filter-button-label" data-province-label>Provinsi</span>
+              <span class="filter-button-value" data-province-value>Semua</span>
+            </button>
+
+            <div
+              class="filter-panel province-filter-panel"
+              id="provinceFilterPanel"
+              data-province-panel
+              role="radiogroup"
+              aria-label="Pilihan provinsi"
+            ></div>
+          </div>
         </div>
 
-        <div class="selected-filters" data-selected-filters></div>
+        <div class="selected-filters" data-selected-filters aria-live="polite"></div>
 
-        <div class="result-head">
-          <strong><span data-program-count>0</span> <span data-i18n="program-count-label">program</span></strong>
-          <span data-i18n="result-hint">klik card untuk melihat detail program</span>
+        <div class="result-head" id="program-result-title">
+          <strong>
+            <span data-program-count>0</span>
+            <span data-i18n="program-count-label">program</span>
+          </strong>
+          <span data-i18n="result-hint">Klik kartu untuk melihat detail program</span>
         </div>
 
-        <div class="program-grid" id="programGrid"></div>
+        <div class="program-grid" id="programGrid" aria-live="polite"></div>
       </div>
     </section>
 
     <div class="modal" id="programModal" aria-hidden="true">
       <div class="modal-backdrop" data-close-modal></div>
-      <div class="modal-card">
-        <button class="modal-close" data-close-modal>×</button>
+      <div
+        class="modal-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="programModalTitle"
+      >
+        <button
+          class="modal-close"
+          type="button"
+          data-close-modal
+          aria-label="Tutup detail program"
+        >
+          ×
+        </button>
         <div id="programModalContent"></div>
       </div>
     </div>

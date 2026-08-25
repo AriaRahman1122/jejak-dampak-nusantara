@@ -21,12 +21,17 @@
       'view-programs': 'Lihat Bank Program',
       
       // Stats Section
-      'funds-donated': 'Dana Terdonasi (Miliar IDR)',
-      'programs-completed': 'Program Terlaksana',
-      'donors': 'Donatur',
-      'volunteers': 'Relawan',
-      'partners': 'Mitra',
-      
+      // 'funds-donated': 'Dana Terdonasi (Miliar IDR)',
+      // 'programs-completed': 'Program Terlaksana',
+      // 'donors': 'Donatur',
+      // 'volunteers': 'Relawan',
+      // 'partners': 'Mitra',
+      'verified-programs': 'Program Terverifikasi',
+      'transparent-distribution': 'Penyaluran Transparan',
+      'secure-donation': 'Donasi Aman',
+      'targeted-distribution': 'Tepat Sasaran',
+      'periodic-reports': 'Laporan Berkala',
+
       // Impact Section
       'measurable-impact': 'Dampak Terukur',
       'impact-title': 'Dirancang agar publik lebih percaya, mitra lebih mudah mengambil keputusan.',
@@ -46,7 +51,7 @@
       
       // Ecosystem Section
       'ecosystem': 'Ekosistem',
-      'ecosystem-title': 'Partner dan Ekosistem JDN.',
+      'ecosystem-title': 'Partner dan Ekosistem Jejak Dampak Nusantara.',
       
       // Programs Section
       'featured-programs': 'Program Pilihan',
@@ -71,11 +76,16 @@
       'view-programs': 'View Program Bank',
       
       // Stats Section
-      'funds-donated': 'Funds Donated (Billion IDR)',
-      'programs-completed': 'Programs Completed',
-      'donors': 'Donors',
-      'volunteers': 'Volunteers',
-      'partners': 'Partners',
+      // 'funds-donated': 'Funds Donated (Billion IDR)',
+      // 'programs-completed': 'Programs Completed',
+      // 'donors': 'Donors',
+      // 'volunteers': 'Volunteers',
+      // 'partners': 'Partners',
+      'verified-programs': 'Verified Programs',
+      'transparent-distribution': 'Transparent Distribution',
+      'secure-donation': 'Secure Donation',
+      'targeted-distribution': 'Targeted Distribution',
+      'periodic-reports': 'Periodic Reports',
       
       // Impact Section
       'measurable-impact': 'Measurable Impact',
@@ -96,7 +106,7 @@
       
       // Ecosystem Section
       'ecosystem': 'Ecosystem',
-      'ecosystem-title': 'Partners and JDN Ecosystem.',
+      'ecosystem-title': 'Partners and Jejak Dampak Nusantara Ecosystem.',
       
       // Programs Section
       'featured-programs': 'Featured Programs',
